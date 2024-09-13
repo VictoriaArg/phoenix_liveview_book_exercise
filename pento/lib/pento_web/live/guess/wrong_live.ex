@@ -1,6 +1,5 @@
 defmodule PentoWeb.WrongLive do
   use PentoWeb, :live_view
-  alias Pento.Accounts
 
   @default_message "Make a guess:"
 

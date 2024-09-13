@@ -19,7 +19,7 @@ defmodule Pento.MixProject do
   def application do
     [
       mod: {Pento.Application, []},
-      extra_applications: [:logger, :runtime_tools, :bamboo]
+      extra_applications: [:logger, :runtime_tools]
     ]
   end
 
@@ -59,8 +59,7 @@ defmodule Pento.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.5"},
-      {:bamboo, "~> 2.3.0"}
+      {:bandit, "~> 1.5"}
     ]
   end
 
