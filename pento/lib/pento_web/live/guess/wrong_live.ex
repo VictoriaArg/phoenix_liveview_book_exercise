@@ -1,9 +1,12 @@
 defmodule PentoWeb.WrongLive do
   use PentoWeb, :live_view
+  alias Pento.Accounts
 
   @default_message "Make a guess:"
 
-  def mount(_params, _session, socket) do
+  def mount(_params, session, socket) do
+    user = Accounts.get_user_by_session_token(session["user_token"])
+
     mounted_socket =
     socket
     |> assign(score: 0)
@@ -11,6 +14,7 @@ defmodule PentoWeb.WrongLive do
     |> assign(time: time())
     |> assign(secret_number: Enum.random(1..10))
     |> assign(winner?: false)
+    |> assign(session_id: session["live_socket_id"])
 
     {:ok, mounted_socket}
   end
@@ -33,6 +37,11 @@ defmodule PentoWeb.WrongLive do
       <% else %>
       <.button phx-click="play_again">Play again</.button>
       <% end %>
+      <p>
+      Current user mail: <%= @current_user.email %>
+      <br>
+      Session ID: <%= @session_id %>
+      </p>
     </h2>
     """
   end
