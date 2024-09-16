@@ -35,7 +35,7 @@ defmodule PentoWeb.WrongLive do
         <.button phx-click="play_again">Play again</.button>
       <% end %>
       <p>
-        Current user mail: <%= @current_user.email %>
+        Current user: <%= @current_user.username %>
         <br /> Session ID: <%= @session_id %>
       </p>
     </h2>

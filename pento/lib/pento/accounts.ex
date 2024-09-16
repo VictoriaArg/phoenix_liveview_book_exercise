@@ -350,4 +350,24 @@ defmodule Pento.Accounts do
       {:error, :user, changeset, _} -> {:error, changeset}
     end
   end
+
+  def change_user_username(user, attrs \\ %{}) do
+    User.username_changeset(user, attrs)
+  end
+
+  def update_user_username(user, password, attrs) do
+    changeset =
+      user
+      |> User.username_changeset(attrs)
+      |> User.validate_current_password(password)
+
+    if changeset.valid? do
+      case Repo.update(changeset) do
+        {:ok, user} -> {:ok, user}
+        {:error, :user, changeset, _} -> {:error, changeset}
+      end
+    else
+      {:error, changeset}
+    end
+  end
 end
