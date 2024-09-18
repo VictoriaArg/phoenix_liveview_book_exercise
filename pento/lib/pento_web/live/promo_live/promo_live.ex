@@ -18,11 +18,12 @@ defmodule PentoWeb.PromoLive do
     {:noreply, assign(socket, :form, to_form(changeset))}
   end
 
-  def handle_event("save", %{"recipient" => recipient_params}, socket) do
+  def handle_event("send", %{"recipient" => recipient_params}, socket) do
     changeset = recipient_changeset(socket.assigns.recipient, recipient_params)
 
     if changeset.valid? do
-      send_promo(socket, recipient_params)
+      recipient = Ecto.Changeset.apply_changes(changeset)
+      send_promo(socket, recipient)
     else
       {:noreply, assign(socket, :form, to_form(changeset))}
     end
@@ -40,18 +41,17 @@ defmodule PentoWeb.PromoLive do
     |> Map.put(:action, :validate)
   end
 
-  defp send_promo(socket, changeset) do
-    case Promo.send_email(changeset) do
+  defp send_promo(socket, recipient) do
+    case Promo.send_email(recipient) do
       {:ok, recipient} ->
         {:noreply,
          socket
          |> assign(form: recipient_form())
-         |> put_flash(:info, "Product updated successfully")}
+         |> put_flash(:info, "Promo sent to: #{recipient.email}")}
 
       {:error, error} ->
         {:noreply,
          socket
-         |> assign(form: changeset)
          |> put_flash(:error, "The promo could not be sent, error: #{error}")}
     end
   end

@@ -5,7 +5,8 @@ defmodule Pento.Promo do
     Recipient.changeset(recipient, attrs)
   end
 
-  def send_email(_changeset) do
-    {:ok, %Recipient{}}
+  def send_email(recipient) do
+    # to do
+    {:ok, recipient}
   end
 end
