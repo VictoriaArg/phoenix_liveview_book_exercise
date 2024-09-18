@@ -14,10 +14,10 @@ products = [
     unit_price: 3.00
   },
   %{
-    name: "Chess",
-    description: "The classic strategy game",
-    sku: 5_678_910,
-    unit_price: 10.00
+    name: "Naval Battle",
+    description: "The 1 vs 1 guessing game",
+    sku: 3_218_910,
+    unit_price: 70.00
   }
 ]
 
