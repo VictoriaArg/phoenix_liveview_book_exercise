@@ -105,4 +105,10 @@ defmodule Pento.Catalog do
   def markdown_product(product, discount) do
     Product.unit_price_changeset(product, %{unit_price: product.unit_price - discount})
   end
+
+  def search_product(value) do
+    query = Product.search_by_sku_query(value)
+
+    Repo.one(query)
+  end
 end

@@ -6,7 +6,7 @@ defmodule Pento.Promo do
   end
 
   def send_email(recipient) do
-    # to do
+    # to do: send promo emails and authentication emails
     {:ok, recipient}
   end
 end
