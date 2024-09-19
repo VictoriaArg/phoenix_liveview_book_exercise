@@ -1,4 +1,4 @@
-defmodule PentoWeb.WrongLive do
+defmodule PentoWeb.GuessLive do
   use PentoWeb, :live_view
 
   @default_message "Make a guess:"
