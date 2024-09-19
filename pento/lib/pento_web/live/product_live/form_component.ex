@@ -108,21 +108,23 @@ defmodule PentoWeb.ProductLive.FormComponent do
   defp notify_parent(msg), do: send(self(), {__MODULE__, msg})
 
   defp params_with_image(socket, params) do
-    path =
+    s3_path =
       socket
-      |> consume_uploaded_entries(:image, &upload_static_file/2)
+      |> consume_uploaded_entries(:image, &upload_to_s3/2)
       |> List.first()
 
-    Map.put(params, "image_upload", path)
+    Map.put(params, "image_upload", s3_path)
   end
 
-  defp upload_static_file(%{path: path}, _entry) do
-    ## todo production image file persistance implementation here!
+  defp upload_to_s3(%{path: path}, %{client_name: filename}) do
+    bucket = System.get_env("BUCKET")
+    dest = "#{System.get_env("IMAGES_DIRECTORY")}/#{filename}"
 
-    filename = Path.basename(path)
-    dest = Path.join("priv/static/images", filename)
-    File.cp!(path, dest)
+    {:ok, file_binary} = File.read(path)
 
-    {:ok, ~p"/images/#{filename}"}
+    ExAws.S3.put_object(bucket, dest, file_binary, acl: :public_read)
+    |> ExAws.request()
+
+    {:ok, "https://#{bucket}.s3.amazonaws.com/#{dest}"}
   end
 end
