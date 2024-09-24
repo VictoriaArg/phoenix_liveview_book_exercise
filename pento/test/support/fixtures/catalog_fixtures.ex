@@ -7,7 +7,7 @@ defmodule Pento.CatalogFixtures do
   @doc """
   Generate a unique product sku.
   """
-  def unique_product_sku, do: System.unique_integer([:positive])
+  def unique_product_sku, do: to_string(:rand.uniform(9_000_000) + 999_999)
 
   @doc """
   Generate a product.
