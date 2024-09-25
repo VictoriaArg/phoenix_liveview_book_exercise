@@ -111,4 +111,9 @@ defmodule Pento.Catalog do
 
     Repo.one(query)
   end
+
+  def list_products_with_rating(user) do
+    Product.Query.with_user_ratings(user)
+    |> Repo.all()
+  end
 end
