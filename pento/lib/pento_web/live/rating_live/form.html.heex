@@ -1,0 +1,24 @@
+<div>
+  <.form
+    :let={f}
+    for={@form}
+    phx-change="validate"
+    phx-submit="save"
+    phx-target={@myself}
+    id={@id}
+  >
+    <div class="flex items-start justify-start">
+      <div>
+        <.input field={@form[:user_id]} type="hidden" />
+        <.input field={@form[:product_id]} type="hidden" />
+        <.input
+          field={@form[:stars]}
+          type="rating"
+          prompt="select stars"
+          options={["★★★★★": 5, "★★★★": 4, "★★★": 3, "★★": 2, "★": 1]}
+        />
+      </div>
+      <.button disabled={!@form[:valid?]} phx-disable-with="Saving..." class="ml-4">Save</.button>
+    </div>
+  </.form>
+</div>

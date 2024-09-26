@@ -276,7 +276,7 @@ defmodule PentoWeb.CoreComponents do
   attr :type, :string,
     default: "text",
     values: ~w(checkbox color date datetime-local email file month number password
-               range search select tel text textarea time url week)
+               range search select tel text textarea time url week rating hidden)
 
   attr :field, Phoenix.HTML.FormField,
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
@@ -323,6 +323,21 @@ defmodule PentoWeb.CoreComponents do
         />
         <%= @label %>
       </label>
+      <.error :for={msg <- @errors}><%= msg %></.error>
+    </div>
+    """
+  end
+
+  def input(%{type: "rating"} = assigns) do
+    ~H"""
+    <div class="inline">
+      <select id={@id} name={@name} class="border focus:ring-zinc-500" multiple={@multiple} {@rest}>
+      <option
+          :if={@prompt}
+          value=""
+        ><%= @prompt %></option>
+      <%= Phoenix.HTML.Form.options_for_select(@options, @value) %>
+    </select>ç
       <.error :for={msg <- @errors}><%= msg %></.error>
     </div>
     """
@@ -474,7 +489,7 @@ defmodule PentoWeb.CoreComponents do
 
     ~H"""
     <div class="overflow-y-auto px-4 sm:overflow-visible sm:px-0">
-      <table class="w-[40rem] mt-11 sm:w-full">
+      <table class="w-[40rem] sm:w-full">
         <thead class="text-sm text-left leading-6 text-zinc-500">
           <tr>
             <th :for={col <- @col} class="p-0 pb-4 pr-6 font-normal"><%= col[:label] %></th>

@@ -196,6 +196,7 @@ defmodule Pento.Survey do
   """
   def change_rating(%Rating{} = rating, attrs \\ %{}) do
     Rating.changeset(rating, attrs)
+    |> Map.put(:action, :validate)
   end
 
   def get_demographic_by_user(user) do

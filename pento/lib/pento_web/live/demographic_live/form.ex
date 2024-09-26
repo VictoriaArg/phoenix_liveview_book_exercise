@@ -42,7 +42,7 @@ defmodule PentoWeb.DemographicLive.Form do
     case Survey.create_demographic(params) do
       {:ok, demographic} ->
         send(self(), {:created_demographic, demographic})
-        socket
+        {:noreply, socket}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         assign(socket, form: to_form(changeset))
@@ -56,7 +56,7 @@ defmodule PentoWeb.DemographicLive.Form do
   end
 
   defp assign_demographic(%{assigns: %{current_user: current_user}} = socket) do
-    assign(socket, :demographic, %Demographic{user_id: current_user.id})
+    assign(socket, :demographic, %{user_id: current_user.id})
   end
 
   defp assign_changeset(%{assigns: %{demographic: demographic}} = socket) do
