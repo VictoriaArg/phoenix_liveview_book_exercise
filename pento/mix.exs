@@ -63,7 +63,9 @@ defmodule Pento.MixProject do
       {:ex_aws_s3, "~> 2.0"},
       {:hackney, "~> 1.9"},
       {:sweet_xml, "~> 0.6"},
-      {:dotenv, "~> 3.0.0"}
+      {:dotenv, "~> 3.0.0"},
+      {:plug_cowboy, "~> 2.5"},
+      {:contex, "~> 0.4.0"}
     ]
   end
 
