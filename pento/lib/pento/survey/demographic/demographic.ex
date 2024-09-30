@@ -28,6 +28,8 @@ defmodule Pento.Survey.Demographic do
 
   def gender_options(), do: ["male", "female", "other", "prefer not to say"]
 
+  def age_group_options(), do: ["all", "18 and under", "18 to 25", "25 to 35", "35 and up"]
+
   def education_level_options(),
     do: ["highschool", "bachelor's degree", "graduate degree", "other", "prefer not to say"]
 end
