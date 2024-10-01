@@ -2,10 +2,10 @@ defmodule PentoWeb.Admin.SurveyResultsLive do
   use PentoWeb, :live_component
 
   alias Pento.Catalog
-  alias Contex.Plot
   alias Pento.Survey.Demographic
+  alias PentoWeb.Helpers.BarChart
 
-  @gender_options Demographic.gender_options()
+  @gender_options Enum.concat(Demographic.gender_options(), ["all"])
   @age_group_options Demographic.age_group_options()
 
   def update(assigns, socket) do
@@ -13,6 +13,7 @@ defmodule PentoWeb.Admin.SurveyResultsLive do
      socket
      |> assign(assigns)
      |> assign_age_group_filter()
+     |> assign_gender_filter()
      |> assign_products_with_average_ratings()
      |> assign_dataset()
      |> assign_chart()
@@ -31,6 +32,24 @@ defmodule PentoWeb.Admin.SurveyResultsLive do
      |> assign_chart_svg()}
   end
 
+  def handle_event("change_gender", %{"gender_filter" => filter}, socket) do
+    {:noreply,
+     socket
+     |> assign_gender_filter(filter)
+     |> assign_products_with_average_ratings()
+     |> assign_dataset()
+     |> assign_chart()
+     |> assign_chart_svg()}
+  end
+
+  defp assign_gender_filter(socket) do
+    assign(socket, :gender_filter, "all")
+  end
+
+  defp assign_gender_filter(socket, filter) when filter in @gender_options do
+    assign(socket, :gender_filter, filter)
+  end
+
   defp assign_age_group_filter(socket) do
     assign(socket, :age_group_filter, "all")
   end
@@ -40,12 +59,15 @@ defmodule PentoWeb.Admin.SurveyResultsLive do
   end
 
   defp assign_products_with_average_ratings(
-         %{assigns: %{age_group_filter: age_group_filter}} = socket
+         %{assigns: %{age_group_filter: age_group_filter, gender_filter: gender_filter}} = socket
        ) do
     socket
     |> assign(
       :products_with_average_ratings,
-      get_products_with_average_ratings(%{age_group_filter: age_group_filter})
+      get_products_with_average_ratings(%{
+        age_group_filter: age_group_filter,
+        gender_filter: gender_filter
+      })
     )
   end
 
@@ -56,39 +78,16 @@ defmodule PentoWeb.Admin.SurveyResultsLive do
            }
          } = socket
        ) do
-    assign(socket, :dataset, make_bar_chart_dataset(products_with_average_ratings))
+    assign(socket, :dataset, BarChart.make_dataset(products_with_average_ratings))
   end
 
   defp assign_chart(%{assigns: %{dataset: dataset}} = socket) do
-    assign(socket, :chart, make_bar_chart(dataset))
+    assign(socket, :chart, BarChart.make(dataset))
   end
 
   defp assign_chart_svg(%{assigns: %{chart: chart}} = socket) do
-    assign(socket, :chart_svg, render_bar_chart(chart))
+    assign(socket, :chart_svg, BarChart.render(chart))
   end
-
-  defp make_bar_chart_dataset(data) do
-    Contex.Dataset.new(data)
-  end
-
-  defp make_bar_chart(dataset) do
-    Contex.BarChart.new(dataset)
-  end
-
-  defp render_bar_chart(chart) do
-    Plot.new(500, 400, chart)
-    |> Plot.titles(title(), subtitle())
-    |> Plot.axis_labels(x_axis(), y_axis())
-    |> Plot.to_svg()
-  end
-
-  defp title, do: "Product Ratings"
-
-  defp subtitle, do: "average star ratings per product"
-
-  defp x_axis, do: "products"
-
-  defp y_axis, do: "stars"
 
   defp get_products_with_average_ratings(filter) do
     case Catalog.products_with_average_ratings(filter) do

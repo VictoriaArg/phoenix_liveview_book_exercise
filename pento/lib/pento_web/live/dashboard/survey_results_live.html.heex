@@ -3,11 +3,11 @@
   <div id="survey-results-component">
     <div class="container">
       <div>
-        <%!-- <.form
-          :let={f} 
-          for={%{}} 
+        <.form
+          :let={_f}
+          for={%{}}
           as={:gender_filter}
-          phx-change="gender_filter"
+          phx-change="change_gender"
           phx-target={@myself}
           id="gender-form"
         >
@@ -17,7 +17,7 @@
               <option value={gender} selected={@gender_filter == gender}><%= gender %></option>
             <% end %>
           </select>
-        </.form> --%>
+        </.form>
       </div>
       <div>
         <.form
