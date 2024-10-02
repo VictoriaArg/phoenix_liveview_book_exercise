@@ -107,7 +107,7 @@ defmodule Pento.Catalog do
   end
 
   def search_product(value) do
-    query = Product.search_by_sku_query(value)
+    query = Product.Query.search_by_sku_query(value)
 
     Repo.one(query)
   end

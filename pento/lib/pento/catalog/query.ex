@@ -8,6 +8,11 @@ defmodule Pento.Catalog.Product.Query do
 
   def base, do: Product
 
+  def search_by_sku_query(value) do
+    from p in Pento.Catalog.Product,
+      where: p.sku == ^value
+  end
+
   def with_user_ratings(user) do
     base()
     |> preload_user_ratings(user)

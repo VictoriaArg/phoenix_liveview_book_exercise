@@ -33,9 +33,4 @@ defmodule Pento.Catalog.Product do
     |> validate_number(:unit_price, greater_than: 0)
     |> validate_number(:unit_price, less_than: product.unit_price)
   end
-
-  def search_by_sku_query(value) do
-    from p in Pento.Catalog.Product,
-      where: p.sku == ^value
-  end
 end

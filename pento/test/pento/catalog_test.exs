@@ -8,10 +8,16 @@ defmodule Pento.CatalogTest do
 
     import Pento.CatalogFixtures
 
-    @invalid_attrs %{name: nil, description: nil, unit_price: nil, sku: nil}
-
     setup do
-      %{product: product_fixture()}
+      valid_attrs = %{
+        name: "some name",
+        description: "some description",
+        unit_price: 120.5
+      }
+
+      invalid_attrs = %{name: nil, description: nil, unit_price: nil, sku: nil}
+
+      %{product: product_fixture(), valid_attrs: valid_attrs, invalid_attrs: invalid_attrs}
     end
 
     test "list_products/0 returns all products", %{product: product} do
@@ -22,15 +28,13 @@ defmodule Pento.CatalogTest do
       assert Catalog.get_product!(product.id) == product
     end
 
-    test "create_product/1 with valid data creates a product" do
+    test "create_product/1 with valid data creates a product", %{
+      valid_attrs: valid_attrs,
+      invalid_attrs: invalid_attrs
+    } do
       sku = unique_product_sku()
 
-      valid_attrs = %{
-        name: "some name",
-        description: "some description",
-        unit_price: 120.5,
-        sku: sku
-      }
+      valid_attrs = Map.put(valid_attrs, :sku, sku)
 
       assert {:ok, %Product{} = product} = Catalog.create_product(valid_attrs)
       assert product.name == "some name"
@@ -40,7 +44,7 @@ defmodule Pento.CatalogTest do
     end
 
     test "create_product/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Catalog.create_product(@invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} = Catalog.create_product(invalid_attrs)
     end
 
     test "update_product/2 with valid data updates the product", %{product: product} do
@@ -58,8 +62,11 @@ defmodule Pento.CatalogTest do
       assert product.sku == "1234567"
     end
 
-    test "update_product/2 with invalid data returns error changeset", %{product: product} do
-      assert {:error, %Ecto.Changeset{}} = Catalog.update_product(product, @invalid_attrs)
+    test "update_product/2 with invalid data returns error changeset", %{
+      product: product,
+      invalid_attrs: invalid_attrs
+    } do
+      assert {:error, %Ecto.Changeset{}} = Catalog.update_product(product, invalid_attrs)
       assert product == Catalog.get_product!(product.id)
     end
 
