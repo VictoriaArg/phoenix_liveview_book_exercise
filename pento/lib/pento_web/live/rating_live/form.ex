@@ -47,7 +47,6 @@ defmodule PentoWeb.RatingLive.Form do
 
   def validate_changeset(params, %{assigns: %{current_user: user}} = socket) do
     changeset = Survey.change_rating(%Rating{user_id: user.id}, params)
-    IO.inspect(to_form(changeset))
     assign(socket, form: to_form(changeset))
   end
 

@@ -29,10 +29,6 @@ defmodule PentoWeb.DemographicLive.Form do
     end
   end
 
-  def handle_info({:created_demographic, demographic}, socket) do
-    {:noreply, handle_demographic_created(socket, demographic)}
-  end
-
   def params_with_user_id(params, %{assigns: %{current_user: current_user}}) do
     params
     |> Map.put("user_id", current_user.id)
@@ -47,12 +43,6 @@ defmodule PentoWeb.DemographicLive.Form do
       {:error, %Ecto.Changeset{} = changeset} ->
         assign(socket, form: to_form(changeset))
     end
-  end
-
-  def handle_demographic_created(socket, demographic) do
-    socket
-    |> put_flash(:info, "Demographic created successfully")
-    |> assign(:demographic, demographic)
   end
 
   defp assign_demographic(%{assigns: %{current_user: current_user}} = socket) do
