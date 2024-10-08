@@ -4,7 +4,7 @@ defmodule PentoWeb.Admin.UserActivityLive do
 
   @user_activity_topic "user_activity"
 
-  def update(assigns, socket) do
+  def update(_assigns, socket) do
     {:ok,
      socket
      |> assign_user_activity()}
