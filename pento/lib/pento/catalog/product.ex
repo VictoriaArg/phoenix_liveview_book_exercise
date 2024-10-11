@@ -13,7 +13,7 @@ defmodule Pento.Catalog.Product do
 
     timestamps(type: :utc_datetime)
 
-    has_many :ratings, Rating
+    has_many :ratings, Rating, on_delete: :delete_all
   end
 
   @doc false
