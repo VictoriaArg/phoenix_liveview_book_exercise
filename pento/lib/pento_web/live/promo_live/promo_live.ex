@@ -6,9 +6,9 @@ defmodule PentoWeb.PromoLive do
 
   def mount(_params, _session, socket) do
     {:ok,
-    socket
-    |> assign(form: recipient_form(), recipient: %Recipient{})
-    |> assign(:show_feature?, false)}
+     socket
+     |> assign(form: recipient_form(), recipient: %Recipient{})
+     |> assign(:show_feature?, false)}
   end
 
   def handle_event(

@@ -99,3 +99,17 @@
     src:local('Cooper Black'),
     url(https://fonts.cdnfonts.com/s/14988/COOPBL.woff) format('woff')}
 }
+
+@layer components {
+.primary-link {
+@apply text-primary-700 cursor-pointer underline-offset-0 hover:underline-offset-2 hover:underline transition-all duration-300 ease-in-out;
+}
+
+.secondary-link {
+@apply text-secondary-700 cursor-pointer underline-offset-0 hover:underline-offset-2 hover:underline transition-all duration-300 ease-in-out;
+}
+
+.info-link {
+@apply text-info-700 cursor-pointer underline-offset-0 hover:underline-offset-2 hover:underline transition-all duration-300 ease-in-out;
+}
+}
