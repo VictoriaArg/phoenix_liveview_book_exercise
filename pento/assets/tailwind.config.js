@@ -13,8 +13,48 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        'xs': '0.75rem',
+        'sm': '0.875rem',
+        'base': '1rem',
+        'lg': '1.125rem',
+        'xl': '1.25rem',
+        '2xl': '1.5rem',
+        '3xl': '1.875rem',
+        '4xl': '2.25rem',
+        '5xl': '3rem',
+        '6xl': '3.75rem',
+        '7xl': '4.5rem',
+        '8xl': '6rem',
+        '9xl': '8rem',
+      },
+      fontFamily: {
+        'cooper': ['"Cooper Hewitt"', 'sans-serif'],
+        'cooper-black': ['"Cooper Black"', 'sans-serif']
+      },
       colors: {
-        brand: "#FD4F00",
+        'primary-100': "#AAABEE",
+        'primary-300': "#7779E4",
+        'primary-500': "#2D2FD5",
+        'primary-700': "#141666",
+        'secondary-100': "#FFEBF8",
+        'secondary-300': "#FFC2EB",
+        'secondary-500': "#FF97DC",
+        'secondary-700': "#FF1FB0",
+        'info-100': "#C2FFF4",
+        'info-300': "#5DFEE1",
+        'info-500': "#01DFB5",
+        'info-700': "#007A64",
+        'warning-100': "#FDD5C3",
+        'warning-300': "#FB9160",
+        'warning-500': "#FA6826",
+        'warning-700': "#9E3505",
+        'highlight-100': "#FDEDC3",
+        'highlight-300': "#FDD672",
+        'highlight-500': "#FCC638",
+        'highlight-700': "#B28106",
+        'bnw-300': "#BABABA",
+        'bnw-500': "#494949",
       }
     },
   },
@@ -25,14 +65,14 @@ module.exports = {
     //
     //     <div class="phx-click-loading:animate-ping">
     //
-    plugin(({addVariant}) => addVariant("phx-click-loading", [".phx-click-loading&", ".phx-click-loading &"])),
-    plugin(({addVariant}) => addVariant("phx-submit-loading", [".phx-submit-loading&", ".phx-submit-loading &"])),
-    plugin(({addVariant}) => addVariant("phx-change-loading", [".phx-change-loading&", ".phx-change-loading &"])),
+    plugin(({ addVariant }) => addVariant("phx-click-loading", [".phx-click-loading&", ".phx-click-loading &"])),
+    plugin(({ addVariant }) => addVariant("phx-submit-loading", [".phx-submit-loading&", ".phx-submit-loading &"])),
+    plugin(({ addVariant }) => addVariant("phx-change-loading", [".phx-change-loading&", ".phx-change-loading &"])),
 
     // Embeds Heroicons (https://heroicons.com) into your app.css bundle
     // See your `CoreComponents.icon/1` for more information.
     //
-    plugin(function({matchComponents, theme}) {
+    plugin(function ({ matchComponents, theme }) {
       let iconsDir = path.join(__dirname, "../deps/heroicons/optimized")
       let values = {}
       let icons = [
@@ -44,11 +84,11 @@ module.exports = {
       icons.forEach(([suffix, dir]) => {
         fs.readdirSync(path.join(iconsDir, dir)).forEach(file => {
           let name = path.basename(file, ".svg") + suffix
-          values[name] = {name, fullPath: path.join(iconsDir, dir, file)}
+          values[name] = { name, fullPath: path.join(iconsDir, dir, file) }
         })
       })
       matchComponents({
-        "hero": ({name, fullPath}) => {
+        "hero": ({ name, fullPath }) => {
           let content = fs.readFileSync(fullPath).toString().replace(/\r?\n|\r/g, "")
           let size = theme("spacing.6")
           if (name.endsWith("-mini")) {
@@ -68,7 +108,7 @@ module.exports = {
             "height": size
           }
         }
-      }, {values})
+      }, { values })
     })
   ]
 }

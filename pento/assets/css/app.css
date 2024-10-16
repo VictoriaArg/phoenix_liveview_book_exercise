@@ -1,5 +1,101 @@
 @import "tailwindcss/base";
+
 @import "tailwindcss/components";
+
 @import "tailwindcss/utilities";
 
+
 /* This file is for your main application CSS */
+@layer base {
+    @font-face {
+    font-family: 'cooper hewitt';
+    font-style: normal;
+    font-weight: 100;
+    src:local('Cooper Hewitt'),
+    url(https://fonts.cdnfonts.com/s/21211/CooperHewitt-Thin.woff) format('woff')}
+
+    @font-face {
+    font-family: 'cooper hewitt';
+    font-style: italic;
+    font-weight: 100;
+    src:local('Cooper Hewitt'),
+    url(https://fonts.cdnfonts.com/s/21211/CooperHewitt-ThinItalic.woff) format('woff')}
+    @font-face {
+    font-family: 'cooper hewitt';
+    font-style: italic;
+    font-weight: 300;
+    src:local('Cooper Hewitt'),
+    url(https://fonts.cdnfonts.com/s/21211/CooperHewitt-Light.woff) format('woff')}
+    @font-face {
+    font-family: 'cooper hewitt';
+    font-style: italic;
+    font-weight: 300;
+    src:local('Cooper Hewitt'),
+    url(https://fonts.cdnfonts.com/s/21211/CooperHewitt-LightItalic.woff) format('woff')}
+    @font-face {
+    font-family: 'cooper hewitt';
+    font-style: normal;
+    font-weight: 400;
+    src:local('Cooper Hewitt'),
+    url(https://fonts.cdnfonts.com/s/21211/CooperHewitt-Book.woff) format('woff')}
+    @font-face {
+    font-family: 'cooper hewitt';
+    font-style: italic;
+    font-weight: 400;
+    src:local('Cooper Hewitt'),
+    url(https://fonts.cdnfonts.com/s/21211/CooperHewitt-BookItalic.woff) format('woff')}
+    @font-face {
+    font-family: 'cooper hewitt';
+    font-style: normal;
+    font-weight: 500;
+    src:local('Cooper Hewitt'),
+    url(https://fonts.cdnfonts.com/s/21211/CooperHewitt-Medium.woff) format('woff')}
+    @font-face {
+    font-family: 'cooper hewitt';
+    font-style: italic;
+    font-weight: 500;
+    src:local('Cooper Hewitt'),
+    url(https://fonts.cdnfonts.com/s/21211/CooperHewitt-MediumItalic.woff) format('woff')}
+    @font-face {
+    font-family: 'cooper hewitt';
+    font-style: normal;
+    font-weight: 600;
+    src:local('Cooper Hewitt'),
+    url(https://fonts.cdnfonts.com/s/21211/CooperHewitt-Semibold.woff) format('woff')}
+    @font-face {
+    font-family: 'cooper hewitt';
+    font-style: italic;
+    font-weight: 600;
+    src:local('Cooper Hewitt'),
+    url(https://fonts.cdnfonts.com/s/21211/CooperHewitt-SemiboldItalic.woff) format('woff')}
+    @font-face {
+    font-family: 'cooper hewitt';
+    font-style: normal;
+    font-weight: 700;
+    src:local('Cooper Hewitt'),
+    url(https://fonts.cdnfonts.com/s/21211/CooperHewitt-Bold.woff) format('woff')}
+    @font-face {
+    font-family: 'cooper hewitt';
+    font-style: italic;
+    font-weight: 700;
+    src:local('Cooper Hewitt'),
+    url(https://fonts.cdnfonts.com/s/21211/CooperHewitt-BoldItalic.woff) format('woff')}
+    @font-face {
+    font-family: 'cooper hewitt';
+    font-style: normal;
+    font-weight: 800;
+    src:local('Cooper Hewitt'),
+    url(https://fonts.cdnfonts.com/s/21211/CooperHewitt-Heavy.woff) format('woff')}
+    @font-face {
+    font-family: 'cooper hewitt';
+    font-style: italic;
+    font-weight: 800;
+    src:local('Cooper Hewitt'),
+    url(https://fonts.cdnfonts.com/s/21211/CooperHewitt-HeavyItalic.woff) format('woff')}
+
+@font-face {font-family: 'cooper black';
+    font-style: normal;
+    font-weight: 800;
+    src:local('Cooper Black'),
+    url(https://fonts.cdnfonts.com/s/14988/COOPBL.woff) format('woff')}
+}
