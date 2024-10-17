@@ -1,52 +1,59 @@
 <.flash_group flash={@flash} />
-<div class="flex flex-col md:flex-row relative">
-  <img
-    class="hidden lg:block absolute -top-[5.5rem] -left-[12rem] -rotate-2 transition-opacity duration-500 opacity-0"
-    src="https://liveviewprojectbucket.s3.amazonaws.com/images/decoration.png"
-    onload="this.style.opacity=1;"
-  />
-  <div class="bg-highlight-500 h-auto md:h-screen w-screen md:w-[50%] flex flex-col items-center justify-center p-6 md:p-16">
-    <p class="text-xl -mb-6">Welcome to</p>
-    <p class="font-cooper-black text-7xl mt-1">Pento</p>
-    <p class="text-xl w-[80%] mb-2">
-      This is a website created by <.link
-        class="primary-link"
-        navigate="https://github.com/VictoriaArg"
-      >Victoria Argañaras</.link>, based on the excercises from the book
-      <.link
-        class="info-link"
-        navigate="https://pragprog.com/titles/liveview/programming-phoenix-liveview/"
-      >
-        Programming Phoenix LiveView
-      </.link>
-      by Bruce A. Tate and Sophie De Benedetto. <br />
-      You can check the <.link
-        class="secondary-link"
-        navigate="https://github.com/VictoriaArg/phoenix_liveview_book_exercise"
-      >source code here </.link>.
-    </p>
-  </div>
-  <div class="md:h-screen w-screen md:w-[50%] flex flex-col items-center md:items-start justify-center p-6 md:p-16">
-    <p class="text-center md:text-left text-lg md:text-xl mb-8 underline underline-offset-2">
-      To wander around you will need an account.
-    </p>
-
-    <div class="flex flex-col lg:flex-row items-center justify-center lg:justify-normal mb-4 md:mb-8 w-[80%] md:w-auto">
-      <.button
-        aria-label="Register as a new user"
-        type="link"
-        navigate={~p"/users/register"}
-        size="large"
-        class="w-fit mb-8 lg:mb-0 lg:mr-8"
-      >
-        Register here
-      </.button>
-      <p class="text-xs lg:text-base w-[80%] md:w-auto text-center md:text-left">
-        Please remember this is just a demo application, for security reasons don't use your real information.
+<%= if !@current_user do %>
+  <div class="flex flex-col md:flex-row relative">
+    <img
+      class="hidden lg:block absolute -top-[5.5rem] -left-[12rem] -rotate-2 transition-opacity duration-500 opacity-0"
+      src="https://liveviewprojectbucket.s3.amazonaws.com/images/decoration.png"
+      onload="this.style.opacity=1;"
+    />
+    <div class="bg-highlight-500 h-auto md:h-screen w-screen md:w-[50%] flex flex-col items-center justify-center p-6 md:p-16">
+      <p class="text-xl -mb-6">Welcome to</p>
+      <p class="font-cooper-black text-7xl mt-1">Pento</p>
+      <p class="text-xl w-[80%] mb-2">
+        This is a website created by <.link
+          class="primary-link"
+          navigate="https://github.com/VictoriaArg"
+        >Victoria Argañaras</.link>, based on the excercises from the book
+        <.link
+          class="info-link"
+          navigate="https://pragprog.com/titles/liveview/programming-phoenix-liveview/"
+        >
+          Programming Phoenix LiveView
+        </.link>
+        by Bruce A. Tate and Sophie De Benedetto. <br />
+        You can check the <.link
+          class="secondary-link"
+          navigate="https://github.com/VictoriaArg/phoenix_liveview_book_exercise"
+        >source code here </.link>.
       </p>
     </div>
-    <p class="text-center lg:text-left">
-      Already signed up? <.link class="secondary-link ml-2 font-medium">Log in here </.link>
-    </p>
+    <div class="md:h-screen w-screen md:w-[50%] flex flex-col items-center md:items-start justify-center p-6 md:p-16">
+      <p class="text-center md:text-left text-lg md:text-xl mb-8 underline underline-offset-2">
+        To wander around you will need an account.
+      </p>
+
+      <div class="flex flex-col lg:flex-row items-center justify-center lg:justify-normal mb-4 md:mb-8 w-[80%] md:w-auto">
+        <.button
+          aria-label="Register as a new user"
+          type="link"
+          navigate={~p"/users/register"}
+          size="large"
+          class="w-fit mb-8 lg:mb-0 lg:mr-8"
+        >
+          Register here
+        </.button>
+        <p class="text-xs lg:text-base w-[80%] md:w-auto text-center md:text-left">
+          Please remember this is just a demo application, for security reasons don't use your real information.
+        </p>
+      </div>
+      <p class="text-center lg:text-left">
+        Already signed up?
+        <.link navigate={~p"/users/log_in"} class="secondary-link ml-2 font-medium">
+          Log in here 
+        </.link>
+      </p>
+    </div>
   </div>
-</div>
+<% else %>
+  asdfasdfasdf
+<% end %>

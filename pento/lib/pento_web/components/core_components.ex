@@ -741,4 +741,44 @@ defmodule PentoWeb.CoreComponents do
   def translate_errors(errors, field) when is_list(errors) do
     for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
   end
+
+  def close_mobile_navbar(js \\ %JS{}) do
+    js
+    |> JS.remove_class("h-fit w-fit py-4",
+      to: "#mobile-navigation",
+      transition: "opacity-100 ease-in-out duration-300"
+    )
+    |> JS.add_class("hidden",
+      to: "#mobile-navigation-menu",
+      transition: "opacity-0 ease-out duration-300"
+    )
+    |> JS.add_class("hidden",
+      to: "#mobile-navbar-close-icon",
+      transition: "opacity-0 ease-out duration-300"
+    )
+    |> JS.remove_class("hidden",
+      to: "#mobile-navbar-bars-icon",
+      transition: "opacity-100 ease-out duration-300"
+    )
+  end
+
+  def open_mobile_navbar(js \\ %JS{}) do
+    js
+    |> JS.add_class("h-fit w-fit py-4",
+      to: "#mobile-navigation",
+      transition: "opacity-100 ease-in-out duration-300"
+    )
+    |> JS.remove_class("hidden",
+      to: "#mobile-navigation-menu",
+      transition: "opacity-100 ease-out duration-300"
+    )
+    |> JS.remove_class("hidden",
+      to: "#mobile-navbar-close-icon",
+      transition: "opacity-100 ease-out duration-300"
+    )
+    |> JS.add_class("hidden",
+      to: "#mobile-navbar-bars-icon",
+      transition: "opacity-0 ease-out duration-300"
+    )
+  end
 end

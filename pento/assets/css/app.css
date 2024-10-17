@@ -112,4 +112,8 @@
 .info-link {
 @apply text-info-500 cursor-pointer underline-offset-0 hover:text-info-700 hover:underline-offset-2 hover:underline transition-all duration-300 ease-in-out;
 }
+
+.bnw-link {
+@apply text-black cursor-pointer underline-offset-0 hover:text-bnw-500 hover:underline-offset-2 hover:underline transition-all duration-300 ease-in-out;
+}
 }
