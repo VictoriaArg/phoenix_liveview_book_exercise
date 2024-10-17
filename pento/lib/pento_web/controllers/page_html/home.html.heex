@@ -27,18 +27,26 @@
     </p>
   </div>
   <div class="md:h-screen w-screen md:w-[50%] flex flex-col items-center md:items-start justify-center p-6 md:p-16">
-    <p class="text-lg md:text-xl mb-4 underline underline-offset-2">
+    <p class="text-center md:text-left text-lg md:text-xl mb-8 underline underline-offset-2">
       To wander around you will need an account.
     </p>
 
-    <div class="flex items-center mb-4 w-[80%] md:w-auto">
-      <.button class="min-w-fit mr-4">
+    <div class="flex flex-col lg:flex-row items-center justify-center lg:justify-normal mb-4 md:mb-8 w-[80%] md:w-auto">
+      <.button
+        aria-label="Register as a new user"
+        type="link"
+        navigate={~p"/users/register"}
+        size="large"
+        class="w-fit mb-8 lg:mb-0 lg:mr-8"
+      >
         Register here
       </.button>
-      <p class="text-xs md:text-base">
+      <p class="text-xs lg:text-base w-[80%] md:w-auto text-center md:text-left">
         Please remember this is just a demo application, for security reasons don't use your real information.
       </p>
     </div>
-    <p>Already signed up? <.link class="info-link ml-2 font-medium">Log in here </.link></p>
+    <p class="text-center lg:text-left">
+      Already signed up? <.link class="secondary-link ml-2 font-medium">Log in here </.link>
+    </p>
   </div>
 </div>

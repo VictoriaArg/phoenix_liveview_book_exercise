@@ -100,7 +100,11 @@ defmodule PentoWeb.CoreComponents do
   attr :id, :string, doc: "the optional id of flash container"
   attr :flash, :map, default: %{}, doc: "the map of flash messages to display"
   attr :title, :string, default: nil
-  attr :kind, :atom, values: [:info, :error, :highligth, :secondary], doc: "used for styling and flash lookup"
+
+  attr :kind, :atom,
+    values: [:info, :error, :highligth, :secondary],
+    doc: "used for styling and flash lookup"
+
   attr :rest, :global, doc: "the arbitrary HTML attributes to add to the flash container"
 
   slot :inner_block, doc: "the optional inner block that renders the flash message"
@@ -226,30 +230,73 @@ defmodule PentoWeb.CoreComponents do
   """
   attr :type, :string, default: nil
   attr :class, :string, default: nil
-  attr :style, :string, default: "default"
+  attr :style, :string, default: "primary"
+  attr :size, :string, default: "large"
+  attr :navigate, :any
   attr :rest, :global, include: ~w(disabled form name value)
 
   slot :inner_block, required: true
 
   def button(assigns) do
     ~H"""
-    <button
-      type={@type}
-      class={[
-        define_button_classes(@style),
-        @class
-      ]}
-      {@rest}
-    >
-      <%= render_slot(@inner_block) %>
-    </button>
+    <%= if @type == "link" do %>
+      <.link
+        navigate={@navigate}
+        class={[
+          define_button_classes(@style),
+          define_button_size(@size),
+          @class,
+          "flex items-center justify-center phx-submit-loading:opacity-75 rounded-full text-white ring-4 text-nowrap",
+          " disabled:bg-bnw-300 disabled:ring-bnw-500 disabled:hover:ring-bnw-500 disabled:hover:bg-bnw-300",
+          " transition-all duration-300 ease-in-out"
+        ]}
+        {@rest}
+      >
+        <%= render_slot(@inner_block) %>
+      </.link>
+    <% else %>
+      <button
+        type={@type}
+        class={[
+          define_button_classes(@style),
+          define_button_size(@size),
+          @class,
+          "phx-submit-loading:opacity-75 rounded-full text-white ring-4 text-nowrap",
+          " disabled:bg-bnw-300 disabled:ring-bnw-500 disabled:hover:ring-bnw-500 disabled:hover:bg-bnw-300",
+          " transition-all duration-300 ease-in-out"
+        ]}
+        {@rest}
+      >
+        <%= render_slot(@inner_block) %>
+      </button>
+    <% end %>
     """
   end
 
+  @spec define_button_classes(String.t()) :: String.t()
   defp define_button_classes("default") do
-    "phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 " <>
-      "text-sm font-semibold leading-6 text-white active:text-white/80"
+    " bg-zinc-900 hover:bg-zinc-700 active:text-white/80 "
   end
+
+  defp define_button_classes("primary"),
+    do:
+      " bg-primary-500 hover:bg-primary-300" <>
+        " active:bg-primary-700 active:text-primary-100 active:ring-primary-100 active:shadow-solid-primary" <>
+        " ring-black shadow-solid-black"
+
+  defp define_button_classes("secondary"),
+    do:
+      " bg-secondary-500 hover:bg-secondary-300" <>
+        " active:bg-secondary-700 active:text-secondary-100 active:ring-secondary-100 active:shadow-solid-secondary" <>
+        " ring-black shadow-solid-black"
+
+  defp define_button_size("large"),
+    do: " px-8 h-10 md:h-12 text-base md:text-lg leading-8 md:leading-10 font-semibold"
+
+  defp define_button_size("medium"),
+    do: " px-6 h-8 md:h-10 text-sm md:text-base leading-4 md:leading-6 font-medium"
+
+  defp define_button_size("small"), do: "px-3 text-sm md:text-base h-6 md:h-8 leading-4 font-base"
 
   @doc """
   Renders an input with label and error messages.

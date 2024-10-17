@@ -38,12 +38,12 @@ module.exports = {
         'primary-500': "#2D2FD5",
         'primary-700': "#141666",
         'secondary-100': "#FFEBF8",
-        'secondary-300': "#FFC2EB",
-        'secondary-500': "#FF97DC",
-        'secondary-700': "#FF1FB0",
+        'secondary-300': "#FF97DC",
+        'secondary-500': "#FF1FB0",
+        'secondary-700': "#AA177D",
         'info-100': "#C2FFF4",
         'info-300': "#5DFEE1",
-        'info-500': "#01DFB5",
+        'info-500': "#06BF9C",
         'info-700': "#007A64",
         'warning-100': "#FDD5C3",
         'warning-300': "#FB9160",
@@ -57,7 +57,10 @@ module.exports = {
         'bnw-500': "#494949",
       },
       boxShadow: {
-        'solid-black': '8px 8px 0 0 rgba(0, 0, 0, 1)'
+        'solid-black': '8px 8px 0 0 rgba(0, 0, 0, 1)',
+        'solid-primary': '8px 8px 0 0 rgba(170, 171, 238, 1)',
+        'solid-secondary': '8px 8px 0 0 rgba(255, 235, 248, 1)',
+        'solid-disabled': '8px 8px 0 0 rgba(73, 73, 73, 1)'
       },
     },
   },
