@@ -55,7 +55,10 @@ module.exports = {
         'highlight-700': "#B28106",
         'bnw-300': "#BABABA",
         'bnw-500': "#494949",
-      }
+      },
+      boxShadow: {
+        'solid-black': '8px 8px 0 0 rgba(0, 0, 0, 1)'
+      },
     },
   },
   plugins: [
