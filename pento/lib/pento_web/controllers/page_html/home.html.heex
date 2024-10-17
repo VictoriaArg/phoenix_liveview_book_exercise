@@ -1,13 +1,14 @@
 <.flash_group flash={@flash} />
-<div class="flex relative">
+<div class="flex flex-col md:flex-row relative">
   <img
-    class="absolute -top-[3rem] -left-[12rem] -rotate-2"
+    class="hidden lg:block absolute -top-[5.5rem] -left-[12rem] -rotate-2 transition-opacity duration-500 opacity-0"
     src="https://liveviewprojectbucket.s3.amazonaws.com/images/decoration.png"
+    onload="this.style.opacity=1;"
   />
-  <div class="bg-highlight-500 h-screen w-[50%] flex flex-col items-center justify-center">
+  <div class="bg-highlight-500 h-auto md:h-screen w-screen md:w-[50%] flex flex-col items-center justify-center p-6 md:p-16">
     <p class="text-xl -mb-6">Welcome to</p>
     <p class="font-cooper-black text-7xl mt-1">Pento</p>
-    <p class="text-xl w-[28rem] mb-2">
+    <p class="text-xl w-[80%] mb-2">
       This is a website created by <.link
         class="primary-link"
         navigate="https://github.com/VictoriaArg"
@@ -18,23 +19,23 @@
       >
         Programming Phoenix LiveView
       </.link>
-      by Bruce A. Tate and Sophie DeBenedetto. <br />
+      by Bruce A. Tate and Sophie De Benedetto. <br />
       You can check the <.link
         class="secondary-link"
         navigate="https://github.com/VictoriaArg/phoenix_liveview_book_exercise"
       >source code here </.link>.
     </p>
   </div>
-  <div class="h-screen w-[50%] flex flex-col items-start justify-center p-20">
-    <p class="text-xl mb-4 underline underline-offset-2">
+  <div class="md:h-screen w-screen md:w-[50%] flex flex-col items-center md:items-start justify-center p-6 md:p-16">
+    <p class="text-lg md:text-xl mb-4 underline underline-offset-2">
       To wander around you will need an account.
     </p>
 
-    <div class="flex items-center mb-4">
+    <div class="flex items-center mb-4 w-[80%] md:w-auto">
       <.button class="min-w-fit mr-4">
         Register here
       </.button>
-      <p class="text-m">
+      <p class="text-xs md:text-base">
         Please remember this is just a demo application, for security reasons don't use your real information.
       </p>
     </div>
