@@ -588,6 +588,34 @@ defmodule PentoWeb.CoreComponents do
   end
 
   @doc """
+  Renders text code styled.
+  """
+  attr :class, :string, default: ""
+  slot :inner_block, required: true
+
+  def code(assigns) do
+    ~H"""
+    <p class={@class <> "font-mono inline mx-1 text-info-500"}>
+      <%= render_slot(@inner_block) %>
+    </p>
+    """
+  end
+
+  @doc """
+  Renders text code styled.
+  """
+  attr :class, :string, default: ""
+  slot :inner_block, required: true
+
+  def main_title(assigns) do
+    ~H"""
+    <p class={@class <> "font-cooper-black inline mb-4 text-[1.5rem]"}>
+      <%= render_slot(@inner_block) %>
+    </p>
+    """
+  end
+
+  @doc """
   Renders a data list.
 
   ## Examples
@@ -603,10 +631,10 @@ defmodule PentoWeb.CoreComponents do
 
   def list(assigns) do
     ~H"""
-    <div class="mt-14">
-      <dl class="-my-4 divide-y divide-zinc-100">
-        <div :for={item <- @item} class="flex gap-4 py-4 text-sm leading-6 sm:gap-8">
-          <dt class="w-1/4 flex-none text-zinc-500"><%= item.title %></dt>
+    <div class="mt-10">
+      <dl class="-my-2 divide-y divide-zinc-100">
+        <div :for={item <- @item} class="flex gap-4 py-4 text-sm leading-6 sm:gap-8 border-y">
+          <dt class="w-1/4 flex-none font-medium "><%= item.title %></dt>
           <dd class="text-zinc-700"><%= render_slot(item) %></dd>
         </div>
       </dl>
