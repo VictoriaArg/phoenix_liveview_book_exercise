@@ -1,124 +1,126 @@
 <header class="relative px-4 sm:px-6 lg:px-8">
-  <div
-    id="desktop-navigation"
-    class="hidden lg:flex absolute mt-2 -right-2 items-center justify-between bg-highlight-500 border-black border-4 rounded-l-full py-3 text-sm w-[98%]"
-  >
-    <div class="flex items-center gap-4 ml-4">
-      <a href="/">
-        <.icon
-          name="hero-home-solid"
-          class="size-5 hover:size-6 hover:text-info-500 transition-all ease-in-out duration-300"
-        />
-      </a>
-    </div>
-    <div class="flex items-center gap-8 font-semibold leading-6 text-lg px-6">
-      <.link
-        id="products-link"
-        aria-label="Product link"
-        class="bnw-link px-4 border-black"
-        href={~p"/products"}
-      >
-        Products
-      </.link>
-      |
-      <.link
-        id="user-survey-link"
-        aria-label="User survey link"
-        class="bnw-link px-4"
-        href={~p"/survey"}
-      >
-        User survey
-      </.link>
-      |
-      <.link
-        id="survey-results-link"
-        aria-label="Survey results link"
-        class="bnw-link px-4"
-        href={~p"/dashboard"}
-      >
-        Survey Results
-      </.link>
-      |
-      <.link
-        id="guess-game-link"
-        aria-label="Guess game link"
-        class="bnw-link px-4"
-        href={~p"/guess"}
-      >
-        Guess game
-      </.link>
-      |
-      <.link
-        id="promo-codes-link"
-        aria-label="Promo codes link"
-        class="bnw-link px-4"
-        href={~p"/promo"}
-      >
-        Promo codes
-      </.link>
-    </div>
-  </div>
-  <div
-    id="mobile-navigation"
-    class="absolute z-10 right-0 mt-4 lg:hidden bg-highlight-500 border-black border-4 rounded-l-full"
-  >
-    <div class="h-12 w-12 right-6 flex items-center justify-center">
-      <div phx-click={open_mobile_navbar()} id="mobile-navbar-bars-icon">
-        <.icon name="hero-bars-3-solid" class="size-7 text-black" />
+  <%= if @current_user do %>
+    <div
+      id="desktop-navigation"
+      class="hidden lg:flex absolute -right-2 items-center justify-between bg-highlight-500 border-black border-2 rounded-l-full py-2 text-sm w-[80%]"
+    >
+      <div class="flex items-center gap-4 ml-4">
+        <a href="/">
+          <.icon
+            name="hero-home-solid"
+            class="size-5 hover:size-6 hover:text-info-500 transition-all ease-in-out duration-300"
+          />
+        </a>
       </div>
-      <div
-        phx-click={close_mobile_navbar()}
-        id="mobile-navbar-close-icon"
-        class="hidden absolute right-0 top-0 p-3"
-      >
-        <.icon name="hero-x-mark-solid" class="size-7 text-black" />
-      </div>
-    </div>
-    <div id="mobile-navigation-menu" class="hidden">
-      <div class="h-fit w-52 px-6 gap-4 text-right flex flex-col -mt-4 mb-6">
+      <div class="flex items-center gap-8 font-semibold leading-6 text-base px-6">
         <.link
           id="products-link"
           aria-label="Product link"
-          class="bnw-link font-semibold whitespace-nowrap text-[1rem] border-black"
+          class="bnw-link whitespace-nowrap px-4 border-black"
           href={~p"/products"}
         >
           Products
         </.link>
+        |
         <.link
           id="user-survey-link"
           aria-label="User survey link"
-          class="bnw-link font-semibold whitespace-nowrap text-[1rem]"
+          class="bnw-link whitespace-nowrap px-4"
           href={~p"/survey"}
         >
           User survey
         </.link>
+        |
         <.link
           id="survey-results-link"
           aria-label="Survey results link"
-          class="bnw-link font-semibold whitespace-nowrap text-[1rem]"
+          class="bnw-link whitespace-nowrap px-4"
           href={~p"/dashboard"}
         >
           Survey Results
         </.link>
+        |
         <.link
           id="guess-game-link"
           aria-label="Guess game link"
-          class="bnw-link font-semibold whitespace-nowrap text-[1rem]"
+          class="bnw-link whitespace-nowrap px-4"
           href={~p"/guess"}
         >
           Guess game
         </.link>
+        |
         <.link
           id="promo-codes-link"
           aria-label="Promo codes link"
-          class="bnw-link font-semibold whitespace-nowrap text-[1rem]"
+          class="bnw-link whitespace-nowrap px-4"
           href={~p"/promo"}
         >
           Promo codes
         </.link>
       </div>
     </div>
-  </div>
+    <div
+      id="mobile-navigation"
+      class="absolute z-10 right-0 mt-4 lg:hidden bg-highlight-500 border-black border-4 rounded-l-full"
+    >
+      <div class="h-12 w-12 right-6 flex items-center justify-center">
+        <div phx-click={open_mobile_navbar()} id="mobile-navbar-bars-icon">
+          <.icon name="hero-bars-3-solid" class="size-7 text-black" />
+        </div>
+        <div
+          phx-click={close_mobile_navbar()}
+          id="mobile-navbar-close-icon"
+          class="hidden absolute right-0 top-0 p-3"
+        >
+          <.icon name="hero-x-mark-solid" class="size-7 text-black" />
+        </div>
+      </div>
+      <div id="mobile-navigation-menu" class="hidden">
+        <div class="h-fit w-52 px-6 gap-4 text-right flex flex-col -mt-4 mb-6">
+          <.link
+            id="products-link"
+            aria-label="Product link"
+            class="bnw-link font-semibold whitespace-nowrap text-[1rem] border-black"
+            href={~p"/products"}
+          >
+            Products
+          </.link>
+          <.link
+            id="user-survey-link"
+            aria-label="User survey link"
+            class="bnw-link font-semibold whitespace-nowrap text-[1rem]"
+            href={~p"/survey"}
+          >
+            User survey
+          </.link>
+          <.link
+            id="survey-results-link"
+            aria-label="Survey results link"
+            class="bnw-link font-semibold whitespace-nowrap text-[1rem]"
+            href={~p"/dashboard"}
+          >
+            Survey Results
+          </.link>
+          <.link
+            id="guess-game-link"
+            aria-label="Guess game link"
+            class="bnw-link font-semibold whitespace-nowrap text-[1rem]"
+            href={~p"/guess"}
+          >
+            Guess game
+          </.link>
+          <.link
+            id="promo-codes-link"
+            aria-label="Promo codes link"
+            class="bnw-link font-semibold whitespace-nowrap text-[1rem]"
+            href={~p"/promo"}
+          >
+            Promo codes
+          </.link>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </header>
 <main class="px-4 py-20 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-2xl">

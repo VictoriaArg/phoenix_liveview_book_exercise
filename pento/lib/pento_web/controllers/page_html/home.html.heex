@@ -49,11 +49,83 @@
       <p class="text-center lg:text-left">
         Already signed up?
         <.link navigate={~p"/users/log_in"} class="secondary-link ml-2 font-medium">
-          Log in here 
+          Log in here
         </.link>
       </p>
     </div>
   </div>
 <% else %>
-  asdfasdfasdf
+  <div>
+    <.main_title>Features by chapters</.main_title>
+    <.list>
+      <:item title="Chapters 1 and 2: Boilerplate and authentication">
+        <p class="inline">
+          Generation of base code with commands<.code>mix phx.new pento</.code>and<.code>
+            mix phx.gen.auth
+          </.code>.
+          These chapters dive deep into the details of every piece of the generated code and discuss the philosophy of each layer.
+          The first feature created is the <.link class="primary-link" href={~p"/guess"}>guess game</.link>.
+        </p>
+      </:item>
+      <:item title="Chapters 3: Generators for contexts and schemas">
+        <p class="inline">
+          Creation of the catalog context with<.code>mix phx.gen.context</.code>. Liveviews for the
+          <.link class="primary-link" href={~p"/products/new"}>products CRUD</.link>
+          were
+          created with<.code>mix phx.gen.live</.code>. This chapter also focuses on the concepts of core and boundary.
+          The core layer contains code tat is certain and behaves predictably. The boundary layer or context, represents code that
+          can potentially fail.
+        </p>
+      </:item>
+      <:item title="Chapters 4: Live views and templates">
+        <p class="inline">
+          This chapter covers the web side of the
+          <.code>phx.gen.live</.code>
+          generator, including the LiveView lifecycle, templates,
+          and all around of the supporting user interface code. The CRUD for products is extended with the
+          <.link class="primary-link" href={~p"/products"}>products list.</.link>
+        </p>
+      </:item>
+      <:item title="Chapters 5: Forms and changesets">
+        <p class="inline">
+          The product schema is completed with an image field, and creation and edition of new products validate errors that are displayed
+          on forms accordingly. In this chapter the
+          <.link class="primary-link" href={~p"/promo"}>promo code</.link>
+          section is developed to also learn about schemaless changesets.
+        </p>
+      </:item>
+      <:item title="Chapters 6: Function components">
+        <p class="inline">
+          Creation of the user survey along with many reusable functional components. Eventhough this chapter is quite short, the activities
+          let you combine everything previously learned for the
+          <.link class="primary-link" href={~p"/survey"}>demographics and products survey.</.link>
+        </p>
+      </:item>
+      <:item title="Chapters 7: Live components">
+        <p class="inline">
+          Use of statefull components to let our users interact with pieces of the survey by tying common state to events.
+          Communication between liveviews and live components. Extension of the demographic schema.
+        </p>
+      </:item>
+      <:item title="Chapters 8: Building an interactive dashboard">
+        <p class="inline">
+          This chapter explains how to make of Phoenix Prescence to track users visiting products. To see
+          this feature working open one tab on the
+          <.link class="primary-link" href={~p"/dashboard"}>survey results view</.link>
+          and another one visiting a
+          <.link class="primary-link" href={~p"/products/1"}> product detail view.</.link>
+          Another feature developed is a chart for users rating of products. All the queries needed for these features are
+          also developed in this chapter.
+        </p>
+      </:item>
+      <:item title="Chapters 9: Real-time survey results with PubSub">
+        <p class="inline">
+          One of the most entretaining chapters so far. Explains how to dinamically render the chart for users rating of products,
+          so that with every new rating the chart gets updated in real time. To see
+          this feature working open two tabs, one at the Survey Results view, and other at the user survey view.
+          You will see the chart updated without refreshing the tab after submitting the products ratings form.
+        </p>
+      </:item>
+    </.list>
+  </div>
 <% end %>
