@@ -65,7 +65,8 @@ defmodule Pento.MixProject do
       {:sweet_xml, "~> 0.6"},
       {:dotenv, "~> 3.0.0"},
       {:plug_cowboy, "~> 2.5"},
-      {:contex, "~> 0.4.0"}
+      {:contex, "~> 0.4.0"},
+      {:timex, "~> 3.7"}
     ]
   end
 

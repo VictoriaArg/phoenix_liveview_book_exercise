@@ -2,8 +2,11 @@ defmodule PentoWeb.GuessLive do
   use PentoWeb, :live_view
 
   @default_message "Make a guess:"
+  @tick_interval 1000
 
   def mount(_params, session, socket) do
+    if connected?(socket), do: schedule_tick()
+
     mounted_socket =
       socket
       |> assign(score: 0)
@@ -34,10 +37,6 @@ defmodule PentoWeb.GuessLive do
       <% else %>
         <.button phx-click="play_again">Play again</.button>
       <% end %>
-      <p>
-        Current user: <%= @current_user.username %>
-        <br /> Session ID: <%= @session_id %>
-      </p>
     </h2>
     """
   end
@@ -57,7 +56,19 @@ defmodule PentoWeb.GuessLive do
     {:noreply, assign(socket, winner?: false, time: time(), message: @default_message)}
   end
 
-  defp time(), do: DateTime.utc_now() |> to_string()
+  def handle_info(:tick, socket) do
+    schedule_tick()
+    {:noreply, assign(socket, :time, time())}
+  end
+
+  defp schedule_tick do
+    Process.send_after(self(), :tick, @tick_interval)
+  end
+
+  defp time() do
+    DateTime.utc_now()
+    |> Timex.format!("{h12}:{0m}:{0s} {AM}")
+  end
 
   defp wrong_guess_assigns(socket) do
     score = socket.assigns.score - 1
