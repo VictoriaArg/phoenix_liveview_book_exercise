@@ -60,7 +60,8 @@ module.exports = {
         'solid-black': '8px 8px 0 0 rgba(0, 0, 0, 1)',
         'solid-primary': '8px 8px 0 0 rgba(170, 171, 238, 1)',
         'solid-secondary': '8px 8px 0 0 rgba(255, 235, 248, 1)',
-        'solid-disabled': '8px 8px 0 0 rgba(73, 73, 73, 1)'
+        'solid-disabled': '8px 8px 0 0 rgba(186, 186, 186, 1)',
+        'solid-warning': '8px 8px 0 0 rgba(251, 145, 96, 1)'
       },
     },
   },

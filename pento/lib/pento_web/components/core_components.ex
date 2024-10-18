@@ -210,7 +210,7 @@ defmodule PentoWeb.CoreComponents do
   def simple_form(assigns) do
     ~H"""
     <.form :let={f} for={@for} as={@as} {@rest}>
-      <div class="mt-10 space-y-8 bg-white">
+      <div class="mt-8 space-y-8 bg-white">
         <%= render_slot(@inner_block, f) %>
         <div :for={action <- @actions} class="mt-2 flex items-center justify-between gap-6">
           <%= render_slot(action, f) %>
@@ -262,7 +262,8 @@ defmodule PentoWeb.CoreComponents do
           define_button_size(@size),
           @class,
           "phx-submit-loading:opacity-75 rounded-full text-white ring-4 text-nowrap",
-          " disabled:bg-bnw-300 disabled:ring-bnw-500 disabled:hover:ring-bnw-500 disabled:hover:bg-bnw-300",
+          " disabled:bg-bnw-300 disabled:ring-white disabled:hover:ring-white",
+          " disabled:active:text-white disabled:active:ring-white disabled:active:shadow-solid-disabled disabled:shadow-solid-disabled",
           " transition-all duration-300 ease-in-out"
         ]}
         {@rest}
@@ -423,7 +424,7 @@ defmodule PentoWeb.CoreComponents do
         id={@id}
         name={@name}
         class={[
-          "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6 min-h-[6rem]",
+          "block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6 min-h-[6rem]",
           @errors == [] && "border-zinc-300 focus:border-zinc-400",
           @errors != [] && "border-rose-400 focus:border-rose-400"
         ]}
@@ -446,8 +447,11 @@ defmodule PentoWeb.CoreComponents do
         value={Phoenix.HTML.Form.normalize_value(@type, @value)}
         class={[
           "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
-          @errors == [] && "border-zinc-300 focus:border-zinc-400",
-          @errors != [] && "border-rose-400 focus:border-rose-400"
+          "disabled:shadow-solid-disabled disabled:focus:shadow-solid-disabled disabled:border-bnw-300 disabled:focus:border-bnw-300 disabled:focus:border-2",
+          @errors == [] &&
+            "border-black border-2 shadow-solid-black focus:border-black focus:border-4 focus:shadow-solid-primary",
+          @errors != [] &&
+            "border-warning-500 border-2 focus:border-4 focus:border-warning-500 shadow-solid-warning"
         ]}
         {@rest}
       />
@@ -477,7 +481,7 @@ defmodule PentoWeb.CoreComponents do
 
   def error(assigns) do
     ~H"""
-    <p class="mt-3 flex gap-3 text-sm leading-6 text-rose-600">
+    <p class="mt-3 flex gap-3 text-sm leading-6 text-warning-500">
       <.icon name="hero-exclamation-circle-mini" class="mt-0.5 h-5 w-5 flex-none" />
       <%= render_slot(@inner_block) %>
     </p>
@@ -609,7 +613,7 @@ defmodule PentoWeb.CoreComponents do
 
   def main_title(assigns) do
     ~H"""
-    <p class={@class <> "font-cooper-black inline mb-4 text-[1.5rem]"}>
+    <p class={@class <> " font-cooper-black inline mb-4 text-[1.5rem]"}>
       <%= render_slot(@inner_block) %>
     </p>
     """

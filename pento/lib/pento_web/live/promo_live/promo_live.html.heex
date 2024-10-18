@@ -1,13 +1,22 @@
+<.main_title>Promo codes</.main_title>
 <.header>
-  Send your Promo Code to a friend
-  <:subtitle>promo code for 10% off their first game purchase!</:subtitle>
+  Send your promo code to a friend
+  <:subtitle>Promo codes are for 10% off their first game purchase!</:subtitle>
 </.header>
 <div>
   <.simple_form for={@form} id="promo_form" phx-change="validate" phx-submit="send">
-    <.input field={@form[:first_name]} type="text" label="First Name" />
-    <.input field={@form[:email]} type="email" label="Email" phx-debounce="blur" />
+    <div class="h-20">
+      <.input disabled field={@form[:first_name]} type="text" label="First Name" />
+    </div>
+
+    <div class="h-20">
+      <.input disabled field={@form[:email]} type="email" label="Email" phx-debounce="blur" />
+    </div>
     <:actions>
-      <.button phx-disable-with="Sending...">Send Promo</.button>
+      <div class="flex gap-12 items-center justify-center h-fit">
+        <.button class="mt-4" disabled phx-disable-with="Sending...">Send Promo</.button>
+        <p class="mt-4">Sorry, the promo codes are currently disabled :(</p>
+      </div>
     </:actions>
   </.simple_form>
 </div>
