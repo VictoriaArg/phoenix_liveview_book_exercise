@@ -23,7 +23,7 @@ defmodule PentoWeb.RatingLive.Index do
 
   def heading(assigns) do
     ~H"""
-    <h2 class="font-medium text-2xl mb-4">
+    <h2 class="font-medium text-xl mb-2">
       Rating <%= if ratings_complete?(@products), do: "✓" %>
     </h2>
     """
@@ -35,8 +35,8 @@ defmodule PentoWeb.RatingLive.Index do
 
   def product_rating(assigns) do
     ~H"""
-    <div>
-      <div class="my-2"><%= @product.name %></div>
+    <div class="py-4">
+      <div class="mb-4"><%= @product.name %></div>
       <%= if rating = List.first(@product.ratings) do %>
         <RatingLive.Show.stars rating={rating} />
       <% else %>

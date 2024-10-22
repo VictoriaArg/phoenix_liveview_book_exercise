@@ -1,7 +1,7 @@
 defmodule PentoWeb.DemographicLive.Show do
   use Phoenix.Component
 
-  alias PentoWeb.CoreComponents
+  import PentoWeb.CoreComponents
   alias Pento.Survey.Demographic
 
   attr :demographic, Demographic, required: true
@@ -9,8 +9,8 @@ defmodule PentoWeb.DemographicLive.Show do
   def details(assigns) do
     ~H"""
     <div>
-      <h2 class="font-medium text-2xl mb-8">Demographics</h2>
-      <CoreComponents.table id="demographic-table" rows={[@demographic]}>
+      <h2 class="font-medium text-xl mb-4">Demographics</h2>
+      <.table id="demographic-table" rows={[@demographic]}>
         <:col :let={demographic} label="Gender">
           <%= demographic.gender %>
         </:col>
@@ -20,7 +20,7 @@ defmodule PentoWeb.DemographicLive.Show do
         <:col :let={demographic} label="Education Level">
           <%= demographic.education_level %>
         </:col>
-      </CoreComponents.table>
+      </.table>
     </div>
     """
   end

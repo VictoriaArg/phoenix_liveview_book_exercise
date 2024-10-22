@@ -28,7 +28,7 @@ defmodule PentoWeb.GuessLive do
     ~H"""
     <p class="mb-4">It's <%= @time %></p>
     <.main_title>Guess game</.main_title>
-    <p class="mt-4 text-[1.2rem] font-semibold">Choose a difficulty and guess the secret number:</p>
+    <p class="mt-2 text-[1.2rem] font-medium">Choose a difficulty and guess the secret number:</p>
     <p class="mt-2">Changing the difficulty changes the secret number</p>
     <div class="mb-12 w-48">
       <.simple_form

@@ -1,19 +1,16 @@
 <div>
-  <Component.hero content="Survey">
-    Please fill out our survey
-  </Component.hero>
-  <div class="mt-6">
-    <%= if @demographic do %>
-      <div class="mb-8">
-        <DemographicLive.Show.details demographic={@demographic} />
-      </div>
-      <Index.product_list products={@products} current_user={@current_user} />
-    <% else %>
-      <.live_component
-        module={DemographicLive.Form}
-        id="demographic-form"
-        current_user={@current_user}
-      />
-    <% end %>
-  </div>
+  <.main_title class="mb-4">User survey</.main_title>
+  <p class="text-[1rem] font-semibold">Please fill out our survey</p>
+  <%= if @demographic do %>
+    <div class="my-8">
+      <DemographicLive.Show.details demographic={@demographic} />
+    </div>
+    <Index.product_list products={@products} current_user={@current_user} />
+  <% else %>
+    <.live_component
+      module={DemographicLive.Form}
+      id="demographic-form"
+      current_user={@current_user}
+    />
+  <% end %>
 </div>
