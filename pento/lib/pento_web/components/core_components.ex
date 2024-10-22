@@ -388,7 +388,13 @@ defmodule PentoWeb.CoreComponents do
   def input(%{type: "rating"} = assigns) do
     ~H"""
     <div class="inline">
-      <select id={@id} name={@name} class="border focus:ring-zinc-500" multiple={@multiple} {@rest}>
+      <select
+        id={@id}
+        name={@name}
+        class="border ring-2 focus:ring-zinc-500"
+        multiple={@multiple}
+        {@rest}
+      >
         <option :if={@prompt} value=""><%= @prompt %></option>
         <%= Phoenix.HTML.Form.options_for_select(@options, @value) %>
       </select>
@@ -404,7 +410,7 @@ defmodule PentoWeb.CoreComponents do
       <select
         id={@id}
         name={@name}
-        class="mt-2 block w-full rounded-md border border-gray-300 bg-white shadow-sm focus:border-zinc-400 focus:ring-0 sm:text-sm"
+        class="block w-full rounded-lg border-2 border-black ring-black bg-white shadow-solid-black sm:text-sm"
         multiple={@multiple}
         {@rest}
       >
