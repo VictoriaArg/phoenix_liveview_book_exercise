@@ -5,10 +5,11 @@ defmodule PentoWeb.UserSettingsLive do
 
   def render(assigns) do
     ~H"""
-    <.header class="text-center">
+    <.main_title>
       Account Settings
-      <:subtitle>Manage your account email address and password settings</:subtitle>
-    </.header>
+    </.main_title>
+
+    <p>Manage your account email address and password settings.</p>
 
     <div class="space-y-12 divide-y">
       <div>
