@@ -5,7 +5,7 @@
     <div class="my-8">
       <DemographicLive.Show.details demographic={@demographic} />
     </div>
-    <Index.product_list products={@products} current_user={@current_user} />
+    <RatingLive.Index.product_list products={@products} current_user={@current_user} />
   <% else %>
     <.live_component
       module={DemographicLive.Form}

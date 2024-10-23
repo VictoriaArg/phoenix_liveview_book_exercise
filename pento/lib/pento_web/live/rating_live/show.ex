@@ -9,7 +9,7 @@ defmodule PentoWeb.RatingLive.Show do
     ~H"""
     <div class="flex items-center justify-start">
       <%= for _star <- 1..@rating.stars do %>
-        <.icon name="hero-star-solid" class="h-5 w-5 mr-4" />
+        <.icon name="hero-star-solid" class="h-5 w-5 mr-4 text-info-500" />
       <% end %>
       <%= for _star <- Enum.take(1..5, (5 - @rating.stars)) do %>
         <.icon name="hero-star" class="h-5 w-5 mr-4" />

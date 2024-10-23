@@ -4,7 +4,7 @@ defmodule PentoWeb.SurveyLive do
   alias Pento.{Survey, Catalog}
   alias PentoWeb.{DemographicLive, Endpoint}
   alias PentoWeb.SurveyLive.Component
-  alias PentoWeb.RatingLive.Index
+  alias PentoWeb.RatingLive
 
   @survey_results_topic "survey_results"
 
