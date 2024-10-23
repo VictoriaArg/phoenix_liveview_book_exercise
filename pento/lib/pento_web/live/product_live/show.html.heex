@@ -1,13 +1,16 @@
-<.header>
-  Product <%= @product.id %>
-  <:subtitle>This is a product record from your database.</:subtitle>
-  <:actions>
-    <.link patch={~p"/products/#{@product}/show/edit"} phx-click={JS.push_focus()}>
-      <.button>Edit product</.button>
-    </.link>
-  </:actions>
-</.header>
 
+  <div class="flex w-full items-center justify-center gap-8 md:justify-between">
+  <.main_title>
+  Product <%= @product.id %>
+  </.main_title>
+
+
+    <.link class="-mt-4" patch={~p"/products/#{@product}/show/edit"} phx-click={JS.push_focus()}>
+      <.button size="small">Edit product</.button>
+    </.link>
+</div>
+
+<div class="flex md:flex-row flex-col justify-between items-center">
 <.list>
   <:item title="Name"><%= @product.name %></:item>
   <:item title="Description"><%= @product.description %></:item>
@@ -16,9 +19,10 @@
 </.list>
 
 <div class="mt-8">
-  <img class="rounded-xl" alt="product image" width="200" src={@product.image_upload} />
+  <img class="rounded-xl" 
+     alt="product image" width="200" src={@product.image_upload} />
 </div>
-
+</div>
 <.back navigate={~p"/products"}>Back to products</.back>
 
 <.modal

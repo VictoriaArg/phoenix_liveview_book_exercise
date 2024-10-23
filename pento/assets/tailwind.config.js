@@ -62,7 +62,7 @@ module.exports = {
         'solid-secondary': '8px 8px 0 0 rgba(255, 235, 248, 1)',
         'solid-disabled': '8px 8px 0 0 rgba(186, 186, 186, 1)',
         'solid-warning': '8px 8px 0 0 rgba(251, 145, 96, 1)'
-      },
+      }
     },
   },
   plugins: [

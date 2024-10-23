@@ -1,16 +1,16 @@
 <.main_title>Products index</.main_title>
 <div class="mb-8">
   <.simple_form for={@form} id="product-search" phx-change="search" phx-submit="search">
-    <div class="flex gap-16">
+    <div class="flex md:flex-row flex-col md:gap-16">
       <.input
-        class="w-[70%] h-24"
+        class="md:w-[70%] h-28"
         field={@form[:search_value]}
         type="number"
         step="1"
         label="Search for a product by sku number"
       />
-      <div>
-        <p class="m-2 font-semibold whitespace-nowrap text-[0.9rem]">Or create a new one</p>
+      <div class="flex flex-row md:flex-col justify-end md:justify-center md:-mt-12">
+        <p class="m-2 pr-4 font-semibold whitespace-nowrap text-[0.9rem]">Or create a new one</p>
         <.button navigate={~p"/products/new"} type="link" size="medium">New Product</.button>
       </div>
     </div>
