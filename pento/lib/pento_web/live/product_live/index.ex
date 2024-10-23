@@ -3,12 +3,13 @@ defmodule PentoWeb.ProductLive.Index do
 
   alias Pento.Catalog
   alias Pento.Catalog.Product
+  alias Pento.Catalog.Search
 
   @impl true
   def mount(_params, _session, socket) do
     updated_socket =
       socket
-      |> assign(:greeting, "Welcome to Pento!")
+      |> assign(form: to_form(Search.changeset(%Search{})))
       |> stream(:products, Catalog.list_products())
 
     {:ok, updated_socket}
@@ -17,6 +18,44 @@ defmodule PentoWeb.ProductLive.Index do
   @impl true
   def handle_params(params, _url, socket) do
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
+  end
+
+  @impl true
+  def handle_event("delete", %{"id" => id}, socket) do
+    product = Catalog.get_product!(id)
+    {:ok, _} = Catalog.delete_product(product)
+
+    {:noreply, stream_delete(socket, :products, product)}
+  end
+
+  def handle_event("search", %{"search" => %{"search_value" => ""}}, socket),
+    do:
+      {:noreply,
+       socket
+       |> stream(:products, Catalog.list_products(), reset: true)}
+
+  def handle_event("search", %{"search" => %{"search_value" => value}}, socket) do
+    changeset = Search.changeset(%Search{}, %{search_value: value})
+
+    if changeset.valid? do
+      %Search{search_value: value} = Ecto.Changeset.apply_changes(changeset)
+
+      updated_socket =
+        socket
+        |> assign(form: to_form(changeset))
+        |> stream(:products, find_product(value), reset: true)
+
+      {:noreply, updated_socket}
+    else
+      {:noreply,
+       socket
+       |> assign(form: to_form(changeset))}
+    end
+  end
+
+  @impl true
+  def handle_info({PentoWeb.ProductLive.FormComponent, {:saved, product}}, socket) do
+    {:noreply, stream_insert(socket, :products, product)}
   end
 
   defp apply_action(socket, :edit, %{"id" => id}) do
@@ -37,16 +76,13 @@ defmodule PentoWeb.ProductLive.Index do
     |> assign(:product, nil)
   end
 
-  @impl true
-  def handle_info({PentoWeb.ProductLive.FormComponent, {:saved, product}}, socket) do
-    {:noreply, stream_insert(socket, :products, product)}
-  end
+  defp find_product(value) do
+    product_found = Catalog.search_product(value)
 
-  @impl true
-  def handle_event("delete", %{"id" => id}, socket) do
-    product = Catalog.get_product!(id)
-    {:ok, _} = Catalog.delete_product(product)
-
-    {:noreply, stream_delete(socket, :products, product)}
+    if product_found == nil do
+      []
+    else
+      [product_found]
+    end
   end
 end
