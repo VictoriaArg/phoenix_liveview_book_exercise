@@ -101,19 +101,21 @@
 }
 
 @layer components {
-.primary-link {
+.link-primary {
 @apply text-primary-500 cursor-pointer underline-offset-0 hover:text-primary-700 hover:underline-offset-2 hover:underline transition-all duration-300 ease-in-out;
 }
 
-.secondary-link {
+.link-secondary {
 @apply text-secondary-500 cursor-pointer underline-offset-0 hover:text-secondary-700 hover:underline-offset-2 hover:underline transition-all duration-300 ease-in-out;
 }
 
-.info-link {
+.link-info {
 @apply text-info-500 cursor-pointer underline-offset-0 hover:text-info-700 hover:underline-offset-2 hover:underline transition-all duration-300 ease-in-out;
 }
 
-.bnw-link {
+.link-bnw {
 @apply text-black cursor-pointer underline-offset-0 hover:text-bnw-500 hover:underline-offset-2 hover:underline transition-all duration-300 ease-in-out;
 }
+
+
 }

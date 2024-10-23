@@ -11,18 +11,18 @@
       <p class="font-cooper-black text-7xl mt-1">Pento</p>
       <p class="text-xl w-[80%] mb-2">
         This is a website created by <.link
-          class="primary-link"
+          class="link-primary"
           navigate="https://github.com/VictoriaArg"
         >Victoria Argañaras</.link>, based on the excercises from the book
         <.link
-          class="info-link"
+          class="link-info"
           navigate="https://pragprog.com/titles/liveview/programming-phoenix-liveview/"
         >
           Programming Phoenix LiveView
         </.link>
         by Bruce A. Tate and Sophie De Benedetto. <br />
         You can check the <.link
-          class="secondary-link"
+          class="link-secondary"
           navigate="https://github.com/VictoriaArg/phoenix_liveview_book_exercise"
         >source code here </.link>.
       </p>
@@ -48,7 +48,7 @@
       </div>
       <p class="text-center lg:text-left">
         Already signed up?
-        <.link navigate={~p"/users/log_in"} class="secondary-link ml-2 font-medium">
+        <.link navigate={~p"/users/log_in"} class="link-secondary ml-2 font-medium">
           Log in here
         </.link>
       </p>
@@ -64,13 +64,13 @@
             mix phx.gen.auth
           </.code>.
           These chapters dive deep into the details of every piece of the generated code and discuss the philosophy of each layer.
-          The first feature created is the <.link class="primary-link" href={~p"/guess"}>guess game</.link>.
+          The first feature created is the <.link class="link-primary" href={~p"/guess"}>guess game</.link>.
         </p>
       </:item>
       <:item title="Chapters 3: Generators for contexts and schemas">
         <p class="inline">
           Creation of the catalog context with<.code>mix phx.gen.context</.code>. Liveviews for the
-          <.link class="primary-link" href={~p"/products/new"}>products CRUD</.link>
+          <.link class="link-primary" href={~p"/products/new"}>products CRUD</.link>
           were
           created with<.code>mix phx.gen.live</.code>. This chapter also focuses on the concepts of core and boundary.
           The core layer contains code tat is certain and behaves predictably. The boundary layer or context, represents code that
@@ -83,14 +83,14 @@
           <.code>phx.gen.live</.code>
           generator, including the LiveView lifecycle, templates,
           and all around of the supporting user interface code. The CRUD for products is extended with the
-          <.link class="primary-link" href={~p"/products"}>products list.</.link>
+          <.link class="link-primary" href={~p"/products"}>products list.</.link>
         </p>
       </:item>
       <:item title="Chapters 5: Forms and changesets">
         <p class="inline">
           The product schema is completed with an image field, and creation and edition of new products validate errors that are displayed
           on forms accordingly. In this chapter the
-          <.link class="primary-link" href={~p"/promo"}>promo code</.link>
+          <.link class="link-primary" href={~p"/promo"}>promo code</.link>
           section is developed to also learn about schemaless changesets.
         </p>
       </:item>
@@ -98,7 +98,7 @@
         <p class="inline">
           Creation of the user survey along with many reusable functional components. Eventhough this chapter is quite short, the activities
           let you combine everything previously learned for the
-          <.link class="primary-link" href={~p"/survey"}>demographics and products survey.</.link>
+          <.link class="link-primary" href={~p"/survey"}>demographics and products survey.</.link>
         </p>
       </:item>
       <:item title="Chapters 7: Live components">
@@ -111,9 +111,9 @@
         <p class="inline">
           This chapter explains how to make of Phoenix Prescence to track users visiting products. To see
           this feature working open one tab on the
-          <.link class="primary-link" href={~p"/dashboard"}>survey results view</.link>
+          <.link class="link-primary" href={~p"/dashboard"}>survey results view</.link>
           and another one visiting a
-          <.link class="primary-link" href={~p"/products/1"}> product detail view.</.link>
+          <.link class="link-primary" href={~p"/products/1"}> product detail view.</.link>
           Another feature developed is a chart for users rating of products. All the queries needed for these features are
           also developed in this chapter.
         </p>

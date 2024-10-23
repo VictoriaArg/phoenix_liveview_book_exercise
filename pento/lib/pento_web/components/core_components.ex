@@ -669,7 +669,7 @@ defmodule PentoWeb.CoreComponents do
     <div class="mt-16">
       <.link
         navigate={@navigate}
-        class="secondary-link"
+        class="link-secondary"
       >
         <.icon name="hero-arrow-left-solid" class="h-5 w-5 mr-2" />
         <%= render_slot(@inner_block) %>
