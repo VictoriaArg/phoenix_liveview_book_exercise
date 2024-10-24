@@ -1,8 +1,8 @@
 <section class="row">
-  <h1 class="font-heavy text-3xl">Survey Results</h1>
+  <h1 class="font-cooper-black text-2xl mb-8">Survey Results</h1>
   <div id="survey-results-component">
-    <div class="container">
-      <div>
+    <div class="container flex items-center">
+      <div class="mr-8">
         <.form
           :let={_f}
           for={%{}}
@@ -11,8 +11,12 @@
           phx-target={@myself}
           id="gender-form"
         >
-          <label for={:gender_filter}>By gender:</label>
-          <select name="gender_filter" id="gender_filter">
+          <label class="mb-1 block" for={:gender_filter}>By gender:</label>
+          <select
+            class="rounded-xl border-2 border-black shadow-solid-black"
+            name="gender_filter"
+            id="gender_filter"
+          >
             <%= for gender <- @gender_options do %>
               <option value={gender} selected={@gender_filter == gender}><%= gender %></option>
             <% end %>
@@ -28,8 +32,12 @@
           phx-target={@myself}
           id="age_group_form"
         >
-          <label for={:age_group_filter}>By age group:</label>
-          <select name="age_group_filter" id="age_group_filter">
+          <label class="mb-1 block" for={:age_group_filter}>By age group:</label>
+          <select
+            class="rounded-xl border-2 border-black shadow-solid-black"
+            name="age_group_filter"
+            id="age_group_filter"
+          >
             <%= for age_group <- @age_group_options do %>
               <option value={age_group} selected={age_group == @age_group_filter}>
                 <%= age_group %>
@@ -40,7 +48,7 @@
       </div>
     </div>
   </div>
-  <div id="survey-results-chart">
+  <div id="survey-results-chart" class="mt-10">
     <%= @chart_svg %>
   </div>
 </section>

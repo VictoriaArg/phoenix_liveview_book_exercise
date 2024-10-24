@@ -116,6 +116,33 @@
 .link-bnw {
 @apply text-black cursor-pointer underline-offset-0 hover:text-bnw-500 hover:underline-offset-2 hover:underline transition-all duration-300 ease-in-out;
 }
+}
 
+/* Classes for the survey results graph */
+.exc-tick {
+@apply stroke-info-700;
+}
 
+.exc-tick text {
+    @apply fill-primary-700 stroke-none font-[1rem];
+}
+
+.exc-legend {
+    @apply stroke-black;
+}
+
+.exc-legend text{
+    @apply fill-bnw-500 text-[1rem] stroke-none;
+}
+
+.exc-title {
+    @apply text-[1rem] stroke-none font-semibold;
+}
+
+.exc-domain {
+    @apply stroke-primary-700 stroke-2;
+}
+
+.exc-barlabel-in {
+    @apply fill-white text-[1rem];
 }

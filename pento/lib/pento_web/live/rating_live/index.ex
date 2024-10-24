@@ -24,7 +24,8 @@ defmodule PentoWeb.RatingLive.Index do
   def heading(assigns) do
     ~H"""
     <h2 class="font-medium text-xl mb-2">
-      Products rating <p class="inline text-info-500"><%= if ratings_complete?(@products), do: "✓" %></p>
+      Products rating
+      <p class="inline text-info-500"><%= if ratings_complete?(@products), do: "✓" %></p>
     </h2>
     """
   end

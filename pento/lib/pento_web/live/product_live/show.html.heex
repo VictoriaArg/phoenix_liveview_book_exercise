@@ -1,27 +1,24 @@
-
-  <div class="flex w-full items-center justify-center gap-8 md:justify-between">
+<div class="flex w-full items-center justify-center gap-8 md:justify-between">
   <.main_title>
-  Product <%= @product.id %>
+    Product <%= @product.id %>
   </.main_title>
 
-
-    <.link class="-mt-4" patch={~p"/products/#{@product}/show/edit"} phx-click={JS.push_focus()}>
-      <.button size="small">Edit product</.button>
-    </.link>
+  <.link class="-mt-4" patch={~p"/products/#{@product}/show/edit"} phx-click={JS.push_focus()}>
+    <.button size="small">Edit product</.button>
+  </.link>
 </div>
 
 <div class="flex md:flex-row flex-col justify-between items-center">
-<.list>
-  <:item title="Name"><%= @product.name %></:item>
-  <:item title="Description"><%= @product.description %></:item>
-  <:item title="Unit price"><%= @product.unit_price %></:item>
-  <:item title="Sku"><%= @product.sku %></:item>
-</.list>
+  <.list>
+    <:item title="Name"><%= @product.name %></:item>
+    <:item title="Description"><%= @product.description %></:item>
+    <:item title="Unit price"><%= @product.unit_price %></:item>
+    <:item title="Sku"><%= @product.sku %></:item>
+  </.list>
 
-<div class="mt-8">
-  <img class="rounded-xl" 
-     alt="product image" width="200" src={@product.image_upload} />
-</div>
+  <div class="mt-8">
+    <img class="rounded-xl" alt="product image" width="200" src={@product.image_upload} />
+  </div>
 </div>
 <.back navigate={~p"/products"}>Back to products</.back>
 

@@ -667,10 +667,7 @@ defmodule PentoWeb.CoreComponents do
   def back(assigns) do
     ~H"""
     <div class="mt-16">
-      <.link
-        navigate={@navigate}
-        class="link-secondary"
-      >
+      <.link navigate={@navigate} class="link-secondary">
         <.icon name="hero-arrow-left-solid" class="h-5 w-5 mr-2" />
         <%= render_slot(@inner_block) %>
       </.link>

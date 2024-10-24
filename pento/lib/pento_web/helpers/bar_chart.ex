@@ -7,20 +7,14 @@ defmodule PentoWeb.Helpers.BarChart do
 
   def make(dataset) do
     BarChart.new(dataset)
+    |> BarChart.colours(["06BF9C"])
   end
 
   def render(chart) do
     Plot.new(500, 400, chart)
-    |> Plot.titles(title(), subtitle())
-    |> Plot.axis_labels(x_axis(), y_axis())
+    |> Plot.titles(title(), "")
     |> Plot.to_svg()
   end
 
-  defp title, do: "Product Ratings"
-
-  defp subtitle, do: "average star ratings per product"
-
-  defp x_axis, do: "products"
-
-  defp y_axis, do: "stars"
+  defp title, do: "Average star ratings per product"
 end
