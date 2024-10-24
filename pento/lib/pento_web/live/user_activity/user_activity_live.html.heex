@@ -1,11 +1,16 @@
-<div class="user-activity-component ml-8">
-  <h2>User Activity</h2>
-  <p>Active users currently viewing games</p>
-  <div :for={{product_name, users} <- @user_activity}>
-    <h3>
+<div>
+  <h2 class="font-semibold w-full text-center text-[1.2rem]">User Activity</h2>
+  <p class="font-medium text-[1rem] w-full text-center mb-8">
+    Active users currently viewing games
+  </p>
+  <div
+    :for={{product_name, users} <- @user_activity}
+    class="border-black border-2 rounded-3xl mb-8 shadow-solid-black"
+  >
+    <h3 class="h-12 p-4 text-info-700 border-b-2 font-semibold">
       <%= product_name %>
     </h3>
-    <ul>
+    <ul class="p-4">
       <li :for={user <- users}><%= user.email %></li>
     </ul>
   </div>

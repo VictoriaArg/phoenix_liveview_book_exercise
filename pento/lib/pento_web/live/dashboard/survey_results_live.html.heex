@@ -11,7 +11,9 @@
           phx-target={@myself}
           id="gender-form"
         >
-          <label class="mb-1 block" for={:gender_filter}>By gender:</label>
+          <label class="mb-1 block md:text-[1rem] text-[0.8rem]" for={:gender_filter}>
+            By gender:
+          </label>
           <select
             class="rounded-xl border-2 border-black shadow-solid-black"
             name="gender_filter"
@@ -32,7 +34,9 @@
           phx-target={@myself}
           id="age_group_form"
         >
-          <label class="mb-1 block" for={:age_group_filter}>By age group:</label>
+          <label class="mb-1 block md:text-[1rem] text-[0.8rem]" for={:age_group_filter}>
+            By age group:
+          </label>
           <select
             class="rounded-xl border-2 border-black shadow-solid-black"
             name="age_group_filter"
@@ -48,7 +52,7 @@
       </div>
     </div>
   </div>
-  <div id="survey-results-chart" class="mt-10">
+  <div id="survey-results-chart" class="mt-10 -ml-10 md:-ml-12">
     <%= @chart_svg %>
   </div>
 </section>
