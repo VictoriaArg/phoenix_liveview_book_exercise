@@ -42,25 +42,25 @@ defmodule PentoWeb.Admin.SurveyResultsLive do
      |> assign_chart_svg()}
   end
 
-  defp assign_gender_filter(socket) do
+  def assign_gender_filter(socket) do
     assign(socket, :gender_filter, "all")
   end
 
-  defp assign_gender_filter(socket, filter) when filter in @gender_options do
+  def assign_gender_filter(socket, filter) when filter in @gender_options do
     assign(socket, :gender_filter, filter)
   end
 
-  defp assign_age_group_filter(socket) do
+  def assign_age_group_filter(socket) do
     assign(socket, :age_group_filter, "all")
   end
 
-  defp assign_age_group_filter(socket, filter) when filter in @age_group_options do
+  def assign_age_group_filter(socket, filter) when filter in @age_group_options do
     assign(socket, :age_group_filter, filter)
   end
 
-  defp assign_products_with_average_ratings(
-         %{assigns: %{age_group_filter: age_group_filter, gender_filter: gender_filter}} = socket
-       ) do
+  def assign_products_with_average_ratings(
+        %{assigns: %{age_group_filter: age_group_filter, gender_filter: gender_filter}} = socket
+      ) do
     socket
     |> assign(
       :products_with_average_ratings,
