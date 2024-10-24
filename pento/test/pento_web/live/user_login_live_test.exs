@@ -8,8 +8,8 @@ defmodule PentoWeb.UserLoginLiveTest do
     test "renders log in page", %{conn: conn} do
       {:ok, _lv, html} = live(conn, ~p"/users/log_in")
 
-      assert html =~ "Log in"
-      assert html =~ "Register"
+      assert html =~ "Log in to account"
+      assert html =~ "Keep me logged in"
       assert html =~ "Forgot your password?"
     end
 
@@ -18,7 +18,7 @@ defmodule PentoWeb.UserLoginLiveTest do
         conn
         |> log_in_user(user_fixture())
         |> live(~p"/users/log_in")
-        |> follow_redirect(conn, "/guess")
+        |> follow_redirect(conn, "/")
 
       assert {:ok, _conn} = result
     end
