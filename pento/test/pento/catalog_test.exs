@@ -29,8 +29,7 @@ defmodule Pento.CatalogTest do
     end
 
     test "create_product/1 with valid data creates a product", %{
-      valid_attrs: valid_attrs,
-      invalid_attrs: invalid_attrs
+      valid_attrs: valid_attrs
     } do
       sku = unique_product_sku()
 
@@ -43,7 +42,9 @@ defmodule Pento.CatalogTest do
       assert product.sku == sku
     end
 
-    test "create_product/1 with invalid data returns error changeset" do
+    test "create_product/1 with invalid data returns error changeset", %{
+      invalid_attrs: invalid_attrs
+    } do
       assert {:error, %Ecto.Changeset{}} = Catalog.create_product(invalid_attrs)
     end
 

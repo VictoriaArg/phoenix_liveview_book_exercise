@@ -14,11 +14,11 @@ defmodule PentoWeb.GuessLive do
       |> assign(score: 0)
       |> assign(message: @default_message)
       |> assign(time: time())
-      |> assign(difficulty: @default_difficulty)
       |> assign(secret_number: Enum.random(number_range))
       |> assign(number_range: number_range)
       |> assign(winner?: false)
       |> assign(session_id: session["live_socket_id"])
+      |> assign(form: to_form(%{"difficulty" => @default_difficulty}))
 
     {:ok, mounted_socket}
   end
@@ -31,15 +31,10 @@ defmodule PentoWeb.GuessLive do
     <p class="mt-2 text-[1.2rem] font-medium">Choose a difficulty and guess the secret number:</p>
     <p class="mt-2">Changing the difficulty changes the secret number</p>
     <div class="mb-12 w-48">
-      <.simple_form
-        for={to_form(%{"difficulty" => @difficulty})}
-        id="difficulty-form"
-        phx-change="change_difficulty"
-      >
+      <.simple_form for={@form} id="difficulty-form" phx-change="change_difficulty">
         <.input
-          field={:difficulty}
+          field={@form[:difficulty]}
           name={:difficulty}
-          value={@difficulty}
           type="select"
           label="Difficulty"
           options={["easy", "intermediate", "hard"]}
@@ -87,7 +82,6 @@ defmodule PentoWeb.GuessLive do
      socket
      |> assign(winner?: false)
      |> assign(time: time())
-     |> assign(difficulty: difficulty)
      |> assign(number_range: number_range)
      |> assign(secret_number: Enum.random(number_range))}
   end

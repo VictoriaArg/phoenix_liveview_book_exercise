@@ -3,6 +3,8 @@ defmodule PentoWeb.PageControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")
-    assert html_response(conn, 200) =~ "Peace of mind from prototype to production"
+
+    assert html_response(conn, 200) =~
+             "Please remember this is just a demo application, for security reasons don't use your real information."
   end
 end

@@ -1,8 +1,6 @@
 defmodule PentoWeb.ProductLive.TableComponent do
   use PentoWeb, :live_component
 
-  alias Pento.Catalog
-
   @impl true
   def render(assigns) do
     ~H"""

@@ -32,7 +32,7 @@ defmodule PentoWeb.ProductLiveTest do
     test "saves new product", %{conn: conn} do
       {:ok, index_live, _html} = live(conn, ~p"/products")
 
-      assert index_live |> element("a", "New Product") |> render_click() =~
+      assert index_live |> element("#new-product", "New Product") |> render_click() =~
                "New Product"
 
       assert_patch(index_live, ~p"/products/new")

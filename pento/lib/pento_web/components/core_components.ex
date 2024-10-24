@@ -233,8 +233,7 @@ defmodule PentoWeb.CoreComponents do
   attr :class, :string, default: nil
   attr :style, :string, default: "primary"
   attr :size, :string, default: "large"
-  attr :navigate, :any
-  attr :rest, :global, include: ~w(disabled form name value)
+  attr :rest, :global, include: ~w(disabled form name value navigate patch)
 
   slot :inner_block, required: true
 
@@ -242,7 +241,6 @@ defmodule PentoWeb.CoreComponents do
     ~H"""
     <%= if @type == "link" do %>
       <.link
-        navigate={@navigate}
         class={[
           define_button_classes(@style),
           define_button_size(@size),
