@@ -1,4 +1,4 @@
-defmodule PentoWeb.Admin.DashboardLive do
+defmodule PentoWeb.DashboardLive do
   use PentoWeb, :live_view
   alias PentoWeb.Endpoint
 
@@ -19,7 +19,7 @@ defmodule PentoWeb.Admin.DashboardLive do
 
   def handle_info(%{event: "rating_created"}, socket) do
     send_update(
-      SurveyResultsLive,
+      PentoWeb.SurveyResultsLive,
       id: socket.assigns.survey_results_component_id
     )
 
@@ -28,7 +28,7 @@ defmodule PentoWeb.Admin.DashboardLive do
 
   def handle_info(%{event: "presence_diff"}, socket) do
     send_update(
-      UserActivityLive,
+      PentoWeb.UserActivityLive,
       id: socket.assigns.user_activity_component_id
     )
 
