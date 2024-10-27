@@ -16,7 +16,7 @@ defmodule PentoWeb.ConnCase do
   """
 
   use ExUnit.CaseTemplate
-  alias Pento.{Accounts, Survey, Catalog}
+  alias Pento.{SurveyFixtures, AccountsFixtures, CatalogFixtures}
 
   using do
     quote do
@@ -46,7 +46,7 @@ defmodule PentoWeb.ConnCase do
   test context.
   """
   def register_and_log_in_user(%{conn: conn}) do
-    user = Pento.AccountsFixtures.user_fixture()
+    user = AccountsFixtures.user_fixture()
     %{conn: log_in_user(conn, user), user: user}
   end
 
@@ -63,90 +63,19 @@ defmodule PentoWeb.ConnCase do
     |> Plug.Conn.put_session(:user_token, token)
   end
 
-  def create_product(_), do: %{product: product_fixture()}
-  def create_user(_), do: %{user: user_fixture()}
-  def create_rating(stars, user, product), do: %{rating: rating_fixture(stars, user, product)}
-  def create_demographic(user), do: %{demographic: demographic_fixture(user)}
   def create_socket(_), do: %{socket: %Phoenix.LiveView.Socket{}}
 
+  def create_user(attrs \\ %{}), do: %{user: AccountsFixtures.user_fixture(attrs)}
+
+  def create_product(attrs), do: %{product: CatalogFixtures.product_fixture(attrs)}
+
+  def create_demographic(attrs), do: %{demographic: SurveyFixtures.demographic_fixture(attrs)}
+
+  def create_rating(attrs), do: %{rating: SurveyFixtures.rating_fixture(attrs)}
+
+  @spec assert_keys(Socket.t(), atom(), any()) :: Socket.t()
   def assert_keys(socket, key, value) do
     assert socket.assigns[key] == value
     socket
-  end
-
-  def product_fixture() do
-    {:ok, product} = Catalog.create_product(create_product_attrs())
-    product
-  end
-
-  def user_fixture(attrs \\ create_user_attrs()) do
-    {:ok, user} = Accounts.register_user(attrs)
-    user
-  end
-
-  def demographic_fixture(user, attrs \\ create_demographic_attrs()) do
-    attrs =
-      attrs
-      |> Map.merge(%{user_id: user.id})
-
-    {:ok, demographic} = Survey.create_demographic(attrs)
-    demographic
-  end
-
-  def rating_fixture(stars, user, product) do
-    {:ok, rating} =
-      Survey.create_rating(%{
-        stars: stars,
-        user_id: user.id,
-        product_id: product.id
-      })
-
-    rating
-  end
-
-  def create_product_attrs() do
-    %{
-      description: "test description",
-      name: "Test Game",
-      sku: "4242420",
-      unit_price: 120.5
-    }
-  end
-
-  def create_user_attrs() do
-    %{
-      email: "test@test.com",
-      password: "passwordpassword"
-    }
-  end
-
-  def create_user2_attrs() do
-    %{
-      email: "another_person@test.com",
-      password: "passwordpassword"
-    }
-  end
-
-  def create_user3_attrs() do
-    %{
-      email: "third_user@test.com",
-      password: "passwordpassword"
-    }
-  end
-
-  def create_demographic_over_18_attrs() do
-    %{
-      gender: "male",
-      year_of_birth: DateTime.utc_now().year - 30,
-      education_level: "graduate degree"
-    }
-  end
-
-  def create_demographic_attrs() do
-    %{
-      gender: "female",
-      year_of_birth: DateTime.utc_now().year - 15,
-      education_level: "bachelor's degree"
-    }
   end
 end

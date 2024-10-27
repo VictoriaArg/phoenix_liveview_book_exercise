@@ -5,17 +5,11 @@ defmodule PentoWeb.DashboardLiveTest do
   setup [:register_and_log_in_user, :create_product, :create_user]
 
   setup %{user: user, product: product} do
-    create_demographic(user)
-    create_rating(2, user, product)
+    create_rating(%{stars: 2, user_id: user.id, product_id: product.id})
 
-    user2 =
-      create_user2_attrs()
-      |> user_fixture()
-
-    user2
-    |> demographic_fixture(create_demographic_over_18_attrs())
-
-    create_rating(3, user2, product)
+    %{user: user2} = create_user()
+    create_demographic(%{user_id: user2.id, year_of_birth: 1950})
+    create_rating(%{stars: 3, user_id: user2.id, product_id: product.id})
 
     :ok
   end
@@ -35,12 +29,11 @@ defmodule PentoWeb.DashboardLiveTest do
 
     assert html =~ "<title>2.50</title>"
 
-    user3 =
-      create_user3_attrs()
-      |> user_fixture()
+    %{user: user3} = create_user()
 
-    create_demographic(user3)
-    create_rating(5, user3, product)
+    create_demographic(%{user_id: user3.id, year_of_birth: 1978})
+
+    create_rating(%{stars: 5, user_id: user3.id, product_id: product.id})
     send(view.pid, %{event: "rating_created"})
     :timer.sleep(2)
 

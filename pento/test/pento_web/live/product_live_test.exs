@@ -2,7 +2,6 @@ defmodule PentoWeb.ProductLiveTest do
   use PentoWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Pento.CatalogFixtures
 
   @create_attrs %{name: "some name", description: "some description", unit_price: 120.5, sku: 42}
   @update_attrs %{
@@ -12,12 +11,6 @@ defmodule PentoWeb.ProductLiveTest do
     sku: 43
   }
   @invalid_attrs %{name: nil, description: nil, unit_price: nil, sku: nil}
-
-  defp create_product(_) do
-    product = product_fixture()
-
-    %{product: product}
-  end
 
   describe "Index" do
     setup [:create_product, :register_and_log_in_user]
