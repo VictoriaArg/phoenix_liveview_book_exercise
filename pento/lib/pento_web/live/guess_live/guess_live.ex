@@ -28,6 +28,7 @@ defmodule PentoWeb.GuessLive do
     ~H"""
     <p class="mb-4">It's <%= @time %></p>
     <.main_title>Guess game</.main_title>
+    <div data-secret-number={@secret_number} hidden></div>
     <p class="mt-2 text-[1.2rem] font-medium">Choose a difficulty and guess the secret number:</p>
     <p class="mt-2">Changing the difficulty changes the secret number</p>
     <div class="mb-12 w-48">
@@ -49,7 +50,13 @@ defmodule PentoWeb.GuessLive do
     <%= if !@winner? do %>
       <div class="md:flex md:w-auto w-48 grid grid-rows-3 grid-flow-col gap-4">
         <%= for n <- @number_range do %>
-          <.button class="w-12 pt-1 mb-4" size="small" phx-click="guess" phx-value-number={n}>
+          <.button
+            id={"button-#{n}"}
+            class="w-12 pt-1 mb-4"
+            size="small"
+            phx-click="guess"
+            phx-value-number={n}
+          >
             <%= n %>
           </.button>
         <% end %>
