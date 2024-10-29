@@ -74,6 +74,16 @@ defmodule PentoWeb.SurveyResultsLive do
   defp assign_dataset(
          %{
            assigns: %{
+             products_with_average_ratings: []
+           }
+         } = socket
+       ) do
+    assign(socket, :dataset, nil)
+  end
+
+  defp assign_dataset(
+         %{
+           assigns: %{
              products_with_average_ratings: products_with_average_ratings
            }
          } = socket
@@ -81,8 +91,16 @@ defmodule PentoWeb.SurveyResultsLive do
     assign(socket, :dataset, BarChart.make_dataset(products_with_average_ratings))
   end
 
+  defp assign_chart(%{assigns: %{dataset: nil}} = socket) do
+    assign(socket, :chart, nil)
+  end
+
   defp assign_chart(%{assigns: %{dataset: dataset}} = socket) do
     assign(socket, :chart, BarChart.make(dataset))
+  end
+
+  defp assign_chart_svg(%{assigns: %{chart: nil}} = socket) do
+    assign(socket, :chart_svg, nil)
   end
 
   defp assign_chart_svg(%{assigns: %{chart: chart}} = socket) do

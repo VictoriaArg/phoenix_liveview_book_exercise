@@ -1,58 +1,65 @@
 <section class="row">
   <h1 class="font-cooper-black text-2xl mb-8">Survey Results</h1>
-  <div id="survey-results-component">
-    <div class="container flex items-center">
-      <div class="mr-8">
-        <.form
-          :let={_f}
-          for={%{}}
-          as={:gender_filter}
-          phx-change="change_gender"
-          phx-target={@myself}
-          id="gender-form"
-        >
-          <label class="mb-1 block md:text-[1rem] text-[0.8rem]" for={:gender_filter}>
-            By gender:
-          </label>
-          <select
-            class="rounded-xl border-2 border-black shadow-solid-black"
-            name="gender_filter"
-            id="gender_filter"
+  <%= if @products_with_average_ratings == [] do %>
+    <div class="container flex flex-col items-center justify-center mb-32">
+      <p class="text-[1.5rem] font-semibold">No products created</p>
+      <p class="text-[1.2rem]">Please add new products to visualize the chart.</p>
+    </div>
+  <% else %>
+    <div id="survey-results-component">
+      <div class="container flex items-center">
+        <div class="mr-8">
+          <.form
+            :let={_f}
+            for={%{}}
+            as={:gender_filter}
+            phx-change="change_gender"
+            phx-target={@myself}
+            id="gender-form"
           >
-            <%= for gender <- @gender_options do %>
-              <option value={gender} selected={@gender_filter == gender}><%= gender %></option>
-            <% end %>
-          </select>
-        </.form>
-      </div>
-      <div>
-        <.form
-          :let={_f}
-          for={%{}}
-          as={:age_group_filter}
-          phx-change="change_age_group"
-          phx-target={@myself}
-          id="age_group_form"
-        >
-          <label class="mb-1 block md:text-[1rem] text-[0.8rem]" for={:age_group_filter}>
-            By age group:
-          </label>
-          <select
-            class="rounded-xl border-2 border-black shadow-solid-black"
-            name="age_group_filter"
-            id="age_group_filter"
+            <label class="mb-1 block md:text-[1rem] text-[0.8rem]" for={:gender_filter}>
+              By gender:
+            </label>
+            <select
+              class="rounded-xl border-2 border-black shadow-solid-black"
+              name="gender_filter"
+              id="gender_filter"
+            >
+              <%= for gender <- @gender_options do %>
+                <option value={gender} selected={@gender_filter == gender}><%= gender %></option>
+              <% end %>
+            </select>
+          </.form>
+        </div>
+        <div>
+          <.form
+            :let={_f}
+            for={%{}}
+            as={:age_group_filter}
+            phx-change="change_age_group"
+            phx-target={@myself}
+            id="age_group_form"
           >
-            <%= for age_group <- @age_group_options do %>
-              <option value={age_group} selected={age_group == @age_group_filter}>
-                <%= age_group %>
-              </option>
-            <% end %>
-          </select>
-        </.form>
+            <label class="mb-1 block md:text-[1rem] text-[0.8rem]" for={:age_group_filter}>
+              By age group:
+            </label>
+            <select
+              class="rounded-xl border-2 border-black shadow-solid-black"
+              name="age_group_filter"
+              id="age_group_filter"
+            >
+              <%= for age_group <- @age_group_options do %>
+                <option value={age_group} selected={age_group == @age_group_filter}>
+                  <%= age_group %>
+                </option>
+              <% end %>
+            </select>
+          </.form>
+        </div>
       </div>
     </div>
-  </div>
-  <div id="survey-results-chart" class="mt-10 -ml-10 md:-ml-12">
-    <%= @chart_svg %>
-  </div>
+    <div id="survey-results-chart" class="mt-10 -ml-10 md:-ml-12">
+      <%= @chart_svg %>
+    </div>
+  <% end %>
 </section>

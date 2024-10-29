@@ -2,7 +2,7 @@ defmodule PentoWeb.SurveyResultsLiveTest do
   use PentoWeb.ConnCase
   alias PentoWeb.SurveyResultsLive
 
-  describe "Socket state" do
+  describe "Socket state with products" do
     setup [:create_user, :create_product, :create_socket, :register_and_log_in_user]
 
     setup %{user: user} do
@@ -42,6 +42,16 @@ defmodule PentoWeb.SurveyResultsLiveTest do
       |> SurveyResultsLive.assign_gender_filter()
       |> SurveyResultsLive.assign_products_with_average_ratings()
       |> assert_keys(:products_with_average_ratings, [{"some name", 2.0}])
+    end
+  end
+
+  describe "Socket state without products" do
+    setup [:create_user, :create_socket, :register_and_log_in_user]
+
+    test "no product exists", %{socket: socket} do
+      socket = assigns_for_survey_results(socket)
+
+      assert socket.assigns.products_with_average_ratings == []
     end
   end
 
