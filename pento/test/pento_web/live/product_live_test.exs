@@ -22,6 +22,41 @@ defmodule PentoWeb.ProductLiveTest do
       assert html =~ product.name
     end
 
+    test "searching for products filters the product list", %{conn: conn, product: product} do
+      %{product: new_product} =
+        create_product(%{description: "latest game", name: "new game", sku: "1234567"})
+
+      {:ok, index_live, html} = live(conn, ~p"/products")
+
+      assert html =~ new_product.name
+      assert html =~ product.name
+
+      updated_index =
+        index_live
+        |> form("#product-search", "search[search_value]": "1234567")
+        |> render_change()
+
+      assert updated_index =~ new_product.name
+      refute updated_index =~ product.name
+    end
+
+    test "searching for non-existent products shows an empty result message", %{
+      conn: conn,
+      product: product
+    } do
+      {:ok, index_live, html} = live(conn, ~p"/products")
+
+      assert html =~ product.name
+
+      updated_index =
+        index_live
+        |> form("#product-search", "search[search_value]": "0987654")
+        |> render_change()
+
+      assert updated_index =~ "No products found"
+      refute updated_index =~ product.name
+    end
+
     test "saves new product", %{conn: conn} do
       {:ok, index_live, _html} = live(conn, ~p"/products")
 
