@@ -12,9 +12,16 @@
       />
       <div class="flex flex-row md:flex-col justify-end md:justify-center md:-mt-12">
         <p class="m-2 pr-4 font-semibold whitespace-nowrap text-[0.9rem]">Or create a new one</p>
-        <.button id="new-product" patch={~p"/products/new"} type="link" size="medium">
-          New Product
-        </.button>
+        <%= if @disable_product_creation? do %>
+          <.button id="new-product-disabled" disabled size="medium" class="mb-4">
+            New Product
+          </.button>
+          <p class="text-sm">The product creation limit has been reached</p>
+        <% else %>
+          <.button id="new-product" patch={~p"/products/new"} type="link" size="medium">
+            New Product
+          </.button>
+        <% end %>
       </div>
     </div>
   </.simple_form>

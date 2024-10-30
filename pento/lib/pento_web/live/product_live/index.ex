@@ -7,10 +7,13 @@ defmodule PentoWeb.ProductLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
+    products = Catalog.list_products()
+
     updated_socket =
       socket
       |> assign(form: to_form(Search.changeset(%Search{})))
-      |> stream(:products, Catalog.list_products())
+      |> assign(disable_product_creation?: disable_product_creation?(products))
+      |> stream(:products, products)
 
     {:ok, updated_socket}
   end
@@ -25,7 +28,12 @@ defmodule PentoWeb.ProductLive.Index do
     product = Catalog.get_product!(id)
     {:ok, _} = Catalog.delete_product(product)
 
-    {:noreply, stream(socket, :products, Catalog.list_products())}
+    updated_products = Catalog.list_products()
+
+    {:noreply,
+     socket
+     |> assign(disable_product_creation?: disable_product_creation?(updated_products))
+     |> stream(:products, updated_products)}
   end
 
   def handle_event("search", %{"search" => %{"search_value" => ""}}, socket),
@@ -84,5 +92,9 @@ defmodule PentoWeb.ProductLive.Index do
     else
       [product_found]
     end
+  end
+
+  defp disable_product_creation?(products) do
+    Enum.count(products) >= 5
   end
 end
