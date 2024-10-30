@@ -38,7 +38,9 @@ defmodule PentoWeb.UserRegistrationLive do
         </div>
 
         <:actions>
-          <.button phx-disable-with="Creating account..." class="w-full mt-12">Create an account</.button>
+          <.button phx-disable-with="Creating account..." class="w-full mt-12">
+            Create an account
+          </.button>
         </:actions>
       </.simple_form>
     </div>
@@ -59,7 +61,6 @@ defmodule PentoWeb.UserRegistrationLive do
   def handle_event("save", %{"user" => user_params}, socket) do
     case Accounts.register_user(user_params) do
       {:ok, user} ->
-
         changeset = Accounts.change_user_registration(user)
         {:noreply, socket |> assign(trigger_submit: true) |> assign_form(changeset)}
 

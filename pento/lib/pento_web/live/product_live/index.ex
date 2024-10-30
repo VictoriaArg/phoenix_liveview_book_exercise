@@ -25,7 +25,7 @@ defmodule PentoWeb.ProductLive.Index do
     product = Catalog.get_product!(id)
     {:ok, _} = Catalog.delete_product(product)
 
-    {:noreply, stream_delete(socket, :products, product)}
+    {:noreply, stream(socket, :products, Catalog.list_products())}
   end
 
   def handle_event("search", %{"search" => %{"search_value" => ""}}, socket),
