@@ -36,3 +36,16 @@ npm-debug.log
 /assets/node_modules/
 
 .env
+
+.dockerignore
+
+Dockerfile
+
+fly.toml
+
+env.sh.eex
+
+migrate
+migrate.bat
+server
+server.bat
