@@ -33,12 +33,12 @@ defmodule PentoWeb.UserRegistrationLive do
         <div class="h-20">
           <.input field={@form[:email]} type="email" label="Email" required />
         </div>
-        <div class="h-20">
+        <div class="h-20 mb-12">
           <.input field={@form[:password]} type="password" label="Password" required />
         </div>
 
         <:actions>
-          <.button phx-disable-with="Creating account..." class="w-full">Create an account</.button>
+          <.button phx-disable-with="Creating account..." class="w-full mt-12">Create an account</.button>
         </:actions>
       </.simple_form>
     </div>
