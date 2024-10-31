@@ -1,5 +1,8 @@
 # Pento
 
+This is a demo app developed based on the excersices from the book 
+[Programming Phoenix LiveView](https://pragprog.com/titles/liveview/programming-phoenix-liveview/).
+
 To start your Phoenix server:
 
   * Run `mix setup` to install and setup dependencies
