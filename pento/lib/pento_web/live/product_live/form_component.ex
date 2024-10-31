@@ -81,7 +81,7 @@ defmodule PentoWeb.ProductLive.FormComponent do
         {:noreply,
          socket
          |> put_flash(:info, "Product updated successfully")
-         |> push_patch(to: socket.assigns.patch)}
+         |> push_redirect(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, form: to_form(changeset))}
